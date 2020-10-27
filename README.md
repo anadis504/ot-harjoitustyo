@@ -1,7 +1,8 @@
-# Ohjelmistotekniikka-hy 2020
+# Ohjelmistotekniikka-hy 2020, harjoitustyö
 
-Tämä on *Ohjelmistotekniikka-kurssin* **harjoitustyö**
+## Laskarit ovat täällä:
 
-### Laskarit ovat täällä:
+### Viikko 1
+[gitlog.txt](https://github.com/anadis504/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
 
-[Viikon 1 laskarit](https://github.com/anadis504/ot-harjoitustyo/tree/master/laskarit/viikko1)
+[komentorivi.txt](https://github.com/anadis504/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)

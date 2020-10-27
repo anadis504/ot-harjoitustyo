@@ -1,0 +1,103 @@
+commit dfe6d6d9bac3f432932325581c3c253319bad644
+Author: Anastasia Diseth <annadiseth@gmail.com>
+Date:   Tue Oct 27 20:50:59 2020 +0200
+
+    file1 deleted, file2 -> file22
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit facaa1a9780da3fc8e5633bcf292b4c770e484c3
+Author: Anastasia Diseth <annadiseth@gmail.com>
+Date:   Tue Oct 27 20:46:11 2020 +0200
+
+    tiedostoja luotu, sekä file1 file2 file3
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit bbcbff57510d9a3967866357f81ef985a26d0a75
+Author: Anastasia Diseth <annadiseth@gmail.com>
+Date:   Tue Oct 27 20:45:28 2020 +0200
+
+    eka jo kolmas
+
+ eka.txt    |  31 +---
+ kolmas.txt | 553 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
+ 2 files changed, 553 insertions(+), 31 deletions(-)
+
+commit 0767673210aea4e6480cc53929d1a6368a351e16
+Author: Anastasia Diseth <annadiseth@gmail.com>
+Date:   Tue Oct 27 19:15:17 2020 +0200
+
+    tiedosto.txt on nyt eka
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 19a77e53243f2c2d0e3bd99f37e33205f4f00eee
+Author: Anastasia Diseth <annadiseth@gmail.com>
+Date:   Tue Oct 27 19:13:15 2020 +0200
+
+    toinen poistettu
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 9ff01f99e8f503ebcdb772e66ede13d878998411
+Author: Anastasia Diseth <annadiseth@gmail.com>
+Date:   Tue Oct 27 19:09:00 2020 +0200
+
+    Paljon tektia tiedostoon
+
+ tiedosto.txt | 584 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 583 insertions(+), 1 deletion(-)
+
+commit 7a004b8906803e6e8783495f5835bdadb610666c
+Author: Anastasia Diseth <annadiseth@gmail.com>
+Date:   Tue Oct 27 18:58:24 2020 +0200
+
+    stuff lisätty
+
+ stuff/stuff_eka.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 1d6d0779cba617c073d64aa98dabb91b174a1726
+Author: Anastasia Diseth <annadiseth@gmail.com>
+Date:   Tue Oct 27 18:57:58 2020 +0200
+
+    Muutokset toiseen
+
+ toinen.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 3080cd2f1085b6e72954fbe6ea51fc948040c5f4
+Author: Anastasia Diseth <annadiseth@gmail.com>
+Date:   Tue Oct 27 18:57:33 2020 +0200
+
+    kolmas lisätty
+
+ kolmas.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit e1939968f92bead9bdf79df22ad9f1a08a8d32ce
+Author: Anastasia Diseth <annadiseth@gmail.com>
+Date:   Tue Oct 27 18:49:50 2020 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit ed46ecb7763c01c6c7cab85c3a083c1d7de35241
+Author: Anastasia Diseth <annadiseth@gmail.com>
+Date:   Tue Oct 27 18:47:29 2020 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)

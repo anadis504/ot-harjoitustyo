@@ -1,7 +1,5 @@
 # Ohjelmistotekniikka-hy 2020, harjoitustyö
 
-Tällä luodaan *merge-konflikti*
-
 ## Laskarit ovat täällä:
 
 ### Viikko 1

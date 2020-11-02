@@ -7,3 +7,9 @@
 
 [komentorivi.txt](https://github.com/anadis504/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
 
+### Viikko 2
+[viikko 2](https://github.com/anadis504/ot-harjoitustyo/tree/master/laskarit/viikko2)
+
+![Testikattavuus Unicafe](https://github.com/anadis504/ot-harjoitustyo/blob/master/laskarit/viikko2/kuvat/unicafe-testikattavuus.png)
+
+

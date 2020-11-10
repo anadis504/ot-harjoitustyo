@@ -6,7 +6,7 @@ The program is to be written in Java with Maven. GUI is to be implemented using 
 ## User roles
 There will be only one user role and no need for signing in to the program. 
 
-## Features
+## Primary features
 * Snake line moves constantly forward.
 * User controlles the snake line on the screen using arrow keys.
 * Snake grows by eating objects on the screen.
@@ -18,7 +18,10 @@ There will be only one user role and no need for signing in to the program.
 * User may review the score statistics from GUI.
 
 ### Additional features
-The player may choose between different frames:
-* Full frame
-* No frame, snake appears on the opposite side of the screen when hitting the frame.
-* Partly framed, different obstacles.
+* The player may choose between different frames:
+  * Full frame
+  * No frame, snake appears on the opposite side of the screen when hitting the frame.
+  * Partly framed, different obstacles.
+
+## GUI scetch
+<img src="https://github.com/anadis504/ot-harjoitustyo/blob/master/dokumentaatio/20201110_212041.jpg" width=750>

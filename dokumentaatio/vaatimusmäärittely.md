@@ -6,7 +6,7 @@ The program is to be written in Java with Maven. GUI is to be implemented using 
 ## User roles
 There will be only one user role and no need for signing in to the program. 
 
-## Features
+## Primary features
 * Snake line moves constantly forward.
 * User controlles the snake line on the screen using arrow keys.
 * Snake grows by eating objects on the screen.

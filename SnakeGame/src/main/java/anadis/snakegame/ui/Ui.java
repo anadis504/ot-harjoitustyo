@@ -15,8 +15,19 @@ import javafx.stage.Stage;
 public class Ui extends Application {
 
     @Override
-    public void start(Stage stage) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void init() throws Exception {
+      // ...
+    }
+
+
+    @Override
+    public void start(Stage primaryStage) {
+        primaryStage.setTitle("Snake Game");
+        primaryStage.show();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
     }
     
 }

@@ -2,4 +2,5 @@
 
 | päivä | aika | mitä tein  |
 | :----:|:-----| :-----|
-| 18.2. | 3    | tutustuminen JavaFX:n |
+| 8-10.11 | 1.5    | vaatimusdokumentti |
+| 10.11 | 4    | Projektin alustava konfigurointi |

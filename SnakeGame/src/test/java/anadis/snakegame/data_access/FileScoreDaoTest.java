@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package data_access;
+package anadis.snakegame.data_access;
 
+import anadis.snakegame.domain.Score;
+import java.nio.file.Path;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,6 +19,8 @@ import static org.junit.Assert.*;
  * @author anadis
  */
 public class FileScoreDaoTest {
+    
+    FileScoreDao scores = new FileScoreDao("testfilescores.txt");
     
     public FileScoreDaoTest() {
     }
@@ -36,9 +40,17 @@ public class FileScoreDaoTest {
     @After
     public void tearDown() {
     }
-
+    
     @Test
-    public void testNothingYet() {
-        assertTrue(true);
+    public void testfileExistsAndNotEmptyAfterFirstAddition() {
+        scores.add(new Score("bob", 12));
+        assertTrue(!scores.topTwenty().isEmpty());
+    }
+    
+    @Test
+    public void highestScoreComesFirst() {
+        int highest = scores.topTwenty().get(0).getScore();
+        scores.add(new Score("alice", ++highest));
+        assertEquals("alice", scores.topTwenty().get(0).getName());
     }
 }

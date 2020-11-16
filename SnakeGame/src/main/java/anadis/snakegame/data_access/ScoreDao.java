@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package data_access;
+package anadis.snakegame.data_access;
 
-import domain.Score;
+import anadis.snakegame.domain.Score;
 import java.util.List;
 
 /**

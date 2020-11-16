@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package domain;
+package anadis.snakegame.domain;
 
 /**
  *
  * @author anadis
  */
-public class Score {
+public class Score implements Comparable<Score> {
     
     private String nickname;
     private int score;
@@ -26,4 +26,10 @@ public class Score {
     public int getScore() {
         return this.score;
     }
+
+    @Override
+    public int compareTo(Score other) {
+        return other.getScore() - this.score;
+    }
+
 }

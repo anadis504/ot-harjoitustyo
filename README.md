@@ -2,12 +2,23 @@
 
 ## Snake game
 
+The classic snake-game desctop application: a single-player computer game where the player manouvers a growing line (snake) moving on the screen.
+
 ## Dokumentaatio
 [vaatimusmäärittely](https://github.com/anadis504/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusm%C3%A4%C3%A4rittely.md)
 
 [työaikakirjanpito](https://github.com/anadis504/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md)
 
 ## Komentorivitoiminnot
+
+### Ohjelman suorittaminen
+
+Projektin koodi suoritetaan komennolla 
+
+```
+mvn compile exec:java -Dexec.mainClass=anadis.snakegame.ui.Main
+```
+
 ### Testaus
 
 Testit suoritetaan komennolla

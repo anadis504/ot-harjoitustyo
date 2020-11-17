@@ -8,6 +8,15 @@
 [työaikakirjanpito](https://github.com/anadis504/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md)
 
 ## Komentorivitoiminnot
+
+### Ohjelman suorittaminen
+
+Projektin koodi suoritetaan komennolla 
+
+```
+mvn compile exec:java -Dexec.mainClass=pakkaus.Paaohjelma
+```
+
 ### Testaus
 
 Testit suoritetaan komennolla

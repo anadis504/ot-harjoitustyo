@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package anadis.snakegame.data_access;
+package anadis.snakegame.dao;
 
 import anadis.snakegame.domain.Score;
 import java.io.File;

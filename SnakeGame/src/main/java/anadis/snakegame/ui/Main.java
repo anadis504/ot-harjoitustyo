@@ -1,7 +1,7 @@
 package anadis.snakegame.ui;
 
-import anadis.snakegame.data_access.FileScoreDao;
-import anadis.snakegame.data_access.ScoreDao;
+import anadis.snakegame.dao.FileScoreDao;
+import anadis.snakegame.dao.ScoreDao;
 import anadis.snakegame.domain.Score;
 
 /*

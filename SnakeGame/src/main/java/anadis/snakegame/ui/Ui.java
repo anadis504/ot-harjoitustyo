@@ -5,8 +5,8 @@
  */
 package anadis.snakegame.ui;
 
-import anadis.snakegame.data_access.FileScoreDao;
-import anadis.snakegame.data_access.ScoreDao;
+import anadis.snakegame.dao.FileScoreDao;
+import anadis.snakegame.dao.ScoreDao;
 import anadis.snakegame.domain.Score;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -14,7 +14,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**

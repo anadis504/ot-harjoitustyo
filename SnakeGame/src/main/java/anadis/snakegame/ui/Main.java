@@ -21,9 +21,8 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        ScoreDao dao = new FileScoreDao("scores.txt");
-        dao.add(new Score("bob", 12));
-        System.out.println("Hello world!");
+    
+        System.out.println("Hello Snake!");
         Ui.main(args);
     }
     

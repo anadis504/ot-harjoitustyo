@@ -9,7 +9,7 @@ package anadis.snakegame.ui;
  *
  * @author anadis
  */
-public enum Direction {
-    UP, DOWN, LEFT, RIGHT
+public class Menu {
+    
     
 }

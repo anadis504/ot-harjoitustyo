@@ -5,8 +5,15 @@
  */
 package anadis.snakegame.ui;
 
+import anadis.snakegame.data_access.FileScoreDao;
+import anadis.snakegame.data_access.ScoreDao;
+import anadis.snakegame.domain.Score;
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -16,19 +23,38 @@ import javafx.stage.Stage;
  */
 public class Ui extends Application {
 
+    private ScoreDao dao;
+    
     @Override
     public void init() throws Exception {
-      // ...
+        this.dao = new FileScoreDao("scores.txt");
+        dao.add(new Score("bob", 12));
     }
 
-
     @Override
-    public void start(Stage primaryStage) {
-        StackPane root = new StackPane();
-        Scene scene = new Scene(root, 300, 250);
-        primaryStage.setTitle("Snake Game");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+    public void start(Stage window) {
+        
+        ScoreScene viewScores = new ScoreScene(dao);
+        
+        BorderPane pane = new BorderPane();
+        
+        HBox selection = new HBox();
+        selection.setPadding(new Insets(20, 20, 20, 20));
+        selection.setSpacing(10);
+        
+        Button newGame = new Button("New game");
+        Button scores = new Button("Scores");
+        
+        selection.getChildren().addAll(newGame, scores);
+        pane.setCenter(selection);
+        
+        scores.setOnAction((event) -> pane.setCenter(viewScores.getScene()));
+        
+        Scene scene = new Scene(pane, 400, 300);
+        
+        window.setScene(scene);
+        window.show();
+        
     }
 
     public static void main(String[] args) {

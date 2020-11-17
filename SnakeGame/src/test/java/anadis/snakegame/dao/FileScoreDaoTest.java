@@ -53,5 +53,6 @@ public class FileScoreDaoTest {
         int highest = scores.topTwenty().get(0).getScore();
         scores.add(new Score("alice", ++highest));
         assertEquals("alice", scores.topTwenty().get(0).getName());
+        assertEquals(highest, scores.topTwenty().get(0).getScore());
     }
 }

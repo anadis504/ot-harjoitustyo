@@ -14,7 +14,7 @@
 Projektin koodi suoritetaan komennolla 
 
 ```
-mvn compile exec:java -Dexec.mainClass=pakkaus.Paaohjelma
+mvn compile exec:java -Dexec.mainClass=anadis.snakegame.ui.Main
 ```
 
 ### Testaus

@@ -3,17 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package anadis.snakegame.dao;
-
-import anadis.snakegame.domain.Score;
-import java.util.List;
+package anadis.snakegame.service;
 
 /**
  *
  * @author anadis
  */
-public interface ScoreDao {
-    List<Score> topTwenty();
-    void add(Score score);
-    boolean newHighscore(int points);
+public class ScoreService {
+    
 }

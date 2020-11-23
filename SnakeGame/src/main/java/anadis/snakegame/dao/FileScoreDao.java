@@ -49,7 +49,7 @@ public class FileScoreDao implements ScoreDao {
         while (scores.size() > 20) {
             scores.remove(20);
         }
-        
+
         try {
             FileWriter writer = new FileWriter(file);
             for (Score score : scores) {
@@ -61,6 +61,14 @@ public class FileScoreDao implements ScoreDao {
         } catch (Exception ex) {
             System.out.println(ex);
         }
+    }
+
+    @Override
+    public boolean newHighscore(int points) {
+        if (points > scores.get(scores.size() - 1).getScore()) {
+            return true;
+        }
+        return false;
     }
 
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package anadis.snakegame.ui;
+package anadis.snakegame.scenes;
 
 import anadis.snakegame.dao.ScoreDao;
 import anadis.snakegame.domain.Score;

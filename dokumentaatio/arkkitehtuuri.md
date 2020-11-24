@@ -9,5 +9,5 @@ To be refactored for next week
 
 <img src="https://github.com/anadis504/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/tavoite-luokkaarkitehtuuti.jpg" height=750>
 
-### Pakkauskaavio:
+### Pakkausrakenne:
 <img src="https://github.com/anadis504/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/20201124_172911.jpg" width=750>

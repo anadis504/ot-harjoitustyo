@@ -5,41 +5,48 @@
  */
 package anadis.snakegame.domain;
 
+import anadis.snakegame.scenes.GameScene;
+import javafx.scene.paint.Color;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 /**
  *
  * @author anadis
  */
 public class FoodTest {
-    
+
+    Food food;
+
     public FoodTest() {
     }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
+
     @Before
     public void setUp() {
+        this.food = new Food(0, 0);
     }
-    
+
     @After
     public void tearDown() {
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    @Test
+    public void foodInitedWithColor() {
+        System.out.println(food.getColor().toString());
+        assertTrue(food.getColor().toString().matches("0x(.*)"));
+    }
+
+    @Test
+    public void foodRelocatedSuccessfully() {
+        Food newFood = new Food(0, 0);
+        assertTrue(newFood.getColor().toString().matches("0x(.*)"));
+        food.relocate(20, 20);
+        assertTrue(food.getColor().toString().matches("0x(.*)"));
+        assertFalse(food.equals(newFood));
+    }
 }

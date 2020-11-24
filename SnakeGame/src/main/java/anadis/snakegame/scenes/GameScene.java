@@ -20,8 +20,8 @@ import javafx.scene.paint.Color;
  */
 public class GameScene {
 
-    private static int width;
-    private static int height;
+    private int width;
+    private int height;
     private static int blocksize = 25;
     private Snake snake;
     private int score;

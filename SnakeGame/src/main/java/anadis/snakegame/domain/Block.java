@@ -36,7 +36,7 @@ public class Block {
     }
     
     public void setDirection(Direction direction) {
-//        switch(direction) {
+        switch(direction) {
             case UP:
                 this.y--;
                 break;
@@ -49,7 +49,7 @@ public class Block {
             case LEFT:
                 this.x--;
                 break;
-//        }
+        }
     }
 
     public boolean equals(Block other) {

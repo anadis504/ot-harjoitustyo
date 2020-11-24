@@ -38,7 +38,6 @@ public class ScoreScene {
         pane.setPadding(new Insets(10, 10, 10, 10));
         
         Button back = new Button("Back to menu");
-        System.out.println(dao.topTwenty());
         pane.add(tittle, 0, 0);
         
         if (dao.topTwenty().size() == 0) {

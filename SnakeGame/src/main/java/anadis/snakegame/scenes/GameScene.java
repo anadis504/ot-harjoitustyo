@@ -38,11 +38,11 @@ public class GameScene {
         this.gameOver = false;
         this.score = 0;
     }
-    
+
     public Scene getScene() {
 
         Pane root = new Pane();
-        root.setPrefSize(width*blocksize, height*blocksize);
+        root.setPrefSize(width * blocksize, height * blocksize);
         Canvas canvas = new Canvas(blocksize * width, blocksize * height);
         GraphicsContext context = canvas.getGraphicsContext2D();
         root.getChildren().add(canvas);
@@ -64,7 +64,7 @@ public class GameScene {
             }
         }.start();
 
-        Scene scene = new Scene(root, blocksize * width+2, blocksize * height+2);
+        Scene scene = new Scene(root, blocksize * width + 2, blocksize * height + 2);
 
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.UP) {
@@ -95,7 +95,7 @@ public class GameScene {
             break;
         }
     }
-    
+
     public void timeInstance(GraphicsContext context) {
 
         if (gameOver) {
@@ -119,7 +119,7 @@ public class GameScene {
 
         fill(context);
     }
-    
+
     public void fill(GraphicsContext context) {
         context.setFill(Color.BEIGE);
         context.fillRect(0, 0, width * blocksize, height * blocksize);

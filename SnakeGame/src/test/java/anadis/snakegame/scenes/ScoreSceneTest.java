@@ -5,12 +5,19 @@
  */
 package anadis.snakegame.scenes;
 
+import anadis.snakegame.dao.FileScoreDao;
+import anadis.snakegame.dao.ScoreDao;
+import anadis.snakegame.domain.Score;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
+
 
 /**
  *
@@ -18,28 +25,26 @@ import static org.junit.Assert.*;
  */
 public class ScoreSceneTest {
     
+    ScoreScene scene;
+    ScoreDao dao;
     public ScoreSceneTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
     }
     
     @Before
     public void setUp() {
+        this.dao = mock(FileScoreDao.class);
+        this.scene = new ScoreScene(dao);
     }
     
     @After
     public void tearDown() {
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    @Test
+    public void testingMockito() {
+        List<Score> scores = new ArrayList<>();
+        Score score = new Score("bob", 20);
+        when(dao.topTwenty()).thenReturn(scores);
+        
+    }
 }

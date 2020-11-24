@@ -5,15 +5,11 @@
  */
 package anadis.snakegame.domain;
 
-import anadis.snakegame.scenes.GameScene;
-import javafx.scene.paint.Color;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+
 
 /**
  *
@@ -37,7 +33,6 @@ public class FoodTest {
 
     @Test
     public void foodInitedWithColor() {
-        System.out.println(food.getColor().toString());
         assertTrue(food.getColor().toString().matches("0x(.*)"));
     }
 

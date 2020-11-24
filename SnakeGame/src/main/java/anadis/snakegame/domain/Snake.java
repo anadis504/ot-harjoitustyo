@@ -31,7 +31,7 @@ public class Snake {
     }
 
     public void move() {
-        
+
         for (int i = snake.size() - 1; i > 0; i--) {
             snake.get(i).setX(snake.get(i - 1).getX());
             snake.get(i).setY(snake.get(i - 1).getY());
@@ -40,10 +40,10 @@ public class Snake {
 
     public void border() {
         if (snake.get(0).getX() < 0) {
-            snake.get(0).setX(width-1);
+            snake.get(0).setX(width - 1);
         }
         if (snake.get(0).getY() < 0) {
-            snake.get(0).setY(height-1);
+            snake.get(0).setY(height - 1);
         }
         if (snake.get(0).getX() >= width) {
             snake.get(0).setX(0);

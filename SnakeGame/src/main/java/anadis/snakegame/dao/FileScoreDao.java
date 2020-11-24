@@ -33,7 +33,6 @@ public class FileScoreDao implements ScoreDao {
                 scores.add(new Score(parts[0], Integer.valueOf(parts[1])));
             }
         } catch (Exception ex) {
-            System.out.println(ex);
         }
     }
 
@@ -59,7 +58,6 @@ public class FileScoreDao implements ScoreDao {
 
             writer.close();
         } catch (Exception ex) {
-            System.out.println(ex);
         }
     }
 

@@ -34,9 +34,9 @@ public class Block {
     public void setY(int y) {
         this.y = y;
     }
-    
+
     public void setDirection(Direction direction) {
-        switch(direction) {
+        switch (direction) {
             case UP:
                 this.y--;
                 break;

@@ -20,39 +20,47 @@ import static org.junit.Assert.*;
  * @author anadis
  */
 public class FileScoreDaoTest {
-    
-    FileScoreDao scores = new FileScoreDao("testfilescores.txt");
-    
+
+    FileScoreDao scores;
+
     public FileScoreDaoTest() {
     }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
+
     @Before
     public void setUp() {
+        this.scores = new FileScoreDao("testfilescores.txt");
     }
-    
+
     @After
     public void tearDown() {
     }
-    
+
     @Test
     public void testfileExistsAndNotEmptyAfterFirstAddition() {
         scores.add(new Score("bob", 12));
         assertTrue(!scores.topTwenty().isEmpty());
     }
-    
+
     @Test
     public void highestScoreComesFirst() {
         int highest = scores.topTwenty().get(0).getScore();
         scores.add(new Score("alice", ++highest));
         assertEquals("alice", scores.topTwenty().get(0).getName());
         assertEquals(highest, scores.topTwenty().get(0).getScore());
+    }
+
+    @Test
+    public void checkNewHeghtscoreIsSeen() {
+        int newScore = scores.topTwenty().get(10).getScore();
+        Score newcomer = new Score("newcomer", newScore);
+        scores.add(newcomer);
+        assertTrue(scores.topTwenty().contains(newcomer));
+    }
+
+    @Test
+    public void tooLowScoreNotAddedToTheScoreList() {
+        int newScore = scores.topTwenty().get(19).getScore() - 1;
+        Score notEnough = new Score("LOOSER", newScore);
+        assertFalse(scores.topTwenty().contains(notEnough));
     }
 }

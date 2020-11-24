@@ -40,21 +40,22 @@ public class Snake {
 
     public void border() {
         if (snake.get(0).getX() < 0) {
-            snake.get(0).setX(snake.get(0).getX() + width);
+            snake.get(0).setX(width-1);
         }
-        if (snake.get(0).getY() <= 0) {
+        if (snake.get(0).getY() < 0) {
             snake.get(0).setY(height-1);
         }
-        if (snake.get(0).getX() > width) {
-            snake.get(0).setX(snake.get(0).getX() % width);
+        if (snake.get(0).getX() >= width) {
+            snake.get(0).setX(0);
         }
         if (snake.get(0).getY() >= height) {
-            snake.get(0).setY(0+1);
+            snake.get(0).setY(0);
         }
     }
 
     public void turn(Direction direction) {
         snake.get(0).setDirection(direction);
+        border();
     }
 
     public boolean bodyCrash() {

@@ -20,8 +20,8 @@ import javafx.scene.paint.Color;
  */
 public class GameScene {
 
-    private int width;
-    private int height;
+    private static int width;
+    private static int height;
     private static int blocksize = 25;
     private Snake snake;
     private int score;
@@ -106,7 +106,6 @@ public class GameScene {
 
         snake.move();
         snake.turn(direction);
-        snake.border();
 
         if (snake.getSnake().get(0).equals(food)) {
             snake.grow();

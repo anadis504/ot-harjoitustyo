@@ -20,7 +20,7 @@ There will be only one user role and no need for signing in to the program.
 ### Additional features
 * The player may choose between different frames:
   * Full frame
-  * No frame, snake appears on the opposite side of the screen when hitting the frame.   [Done week 4 (this is the default frame)] 
+  * No frame, snake appears on the opposite side of the screen when hitting the frame.   [Done week 4 (this is the default and only frame)] 
   * Partly framed, different obstacles.
 
 ## GUI scetch

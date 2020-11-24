@@ -24,4 +24,4 @@ There will be only one user role and no need for signing in to the program.
   * Partly framed, different obstacles.
 
 ## GUI scetch
-<img src="https://github.com/anadis504/ot-harjoitustyo/blob/master/dokumentaatio/20201110_212041.jpg" width=750>
+<img src="https://github.com/anadis504/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/20201110_212041.jpg" width=750>

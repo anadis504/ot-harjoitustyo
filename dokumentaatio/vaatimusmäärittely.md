@@ -7,20 +7,20 @@ The program is to be written in Java with Maven. GUI is to be implemented using 
 There will be only one user role and no need for signing in to the program. 
 
 ## Primary features
-* Snake line moves constantly forward.
-* User controlles the snake line on the screen using arrow keys.
-* Snake grows by eating objects on the screen.
-* Speed of snake may be increasing.
-* Points are given by feeding the snake.
-* Game is over when snake crashes in in the frame or own body.
-* When achieving new highscores the player will be asked for a player name in order to keep track of the high-scores. 
-* Scores will be stored locally. 
-* User may review the score statistics from GUI.
+* Snake line moves constantly forward.   [Done week 4]
+* User controlles the snake line on the screen using arrow keys.  [Done week 4]
+* Snake grows by eating objects on the screen.  [Done week 4]
+* Speed of snake is increasing.   [Done week 4]
+* Points are given by feeding the snake.  [Done week 4]
+* Game is over when snake crashes in in the frame or own body.  [Done week 4]
+* When achieving new highscores the player will be asked for a player name in order to keep track of the high-scores.  [NOT DONE]
+* Scores will be stored locally.    [Done week 3]
+* User may review the score statistics from GUI.   [Done week 3]
 
 ### Additional features
 * The player may choose between different frames:
   * Full frame
-  * No frame, snake appears on the opposite side of the screen when hitting the frame.
+  * No frame, snake appears on the opposite side of the screen when hitting the frame.   [Done week 4 (this is the default frame)] 
   * Partly framed, different obstacles.
 
 ## GUI scetch

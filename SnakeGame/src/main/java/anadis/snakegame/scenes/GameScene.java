@@ -48,23 +48,23 @@ public class GameScene {
         root.getChildren().add(canvas);
 
         new AnimationTimer() {
-            long lastTick = 0;
+            long lastTimeInstance = 0;
 
             public void handle(long now) {
-                if (lastTick == 0) {
-                    lastTick = now;
+                if (lastTimeInstance == 0) {
+                    lastTimeInstance = now;
                     timeInstance(context);
                     return;
                 }
 
-                if (now - lastTick > 1000000000 / (score + 5)) {
-                    lastTick = now;
+                if (now - lastTimeInstance > 1000000000 / (score + 5)) {
+                    lastTimeInstance = now;
                     timeInstance(context);
                 }
             }
         }.start();
 
-        Scene scene = new Scene(root, blocksize * width + 2, blocksize * height + 2);
+        Scene scene = new Scene(root, blocksize * width, blocksize * height);
 
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.UP) {
@@ -84,18 +84,6 @@ public class GameScene {
         return scene;
     }
 
-    public void newFood() {
-        while (true) {
-            food.relocate(width, height);
-            for (Block block : snake.getSnake()) {
-                if (block.equals(food)) {
-                    continue;
-                }
-            }
-            break;
-        }
-    }
-
     public void timeInstance(GraphicsContext context) {
 
         if (gameOver) {
@@ -110,7 +98,7 @@ public class GameScene {
         if (snake.getSnake().get(0).equals(food)) {
             snake.grow();
             score++;
-            newFood();
+            food.relocate(width, height);
         }
 
         if (snake.bodyCrash()) {

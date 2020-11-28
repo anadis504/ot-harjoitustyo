@@ -5,6 +5,7 @@
  */
 package anadis.snakegame.domain;
 
+import anadis.snakegame.ui.Ui;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,9 +18,9 @@ public class Snake {
     private List<Block> snake;
     private int height, width;
 
-    public Snake(int width, int height) {
-        this.width = width;
-        this.height = height;
+    public Snake() {
+        this.width = Ui.width;
+        this.height = Ui.height;
         this.snake = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
             snake.add(new Block(0, height / 2));

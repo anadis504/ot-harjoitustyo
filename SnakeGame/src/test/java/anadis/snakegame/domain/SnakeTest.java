@@ -26,7 +26,7 @@ public class SnakeTest {
 
     @Before
     public void setUp() {
-        this.snake = new Snake(20, 20);
+        this.snake = new Snake();
     }
 
     @After

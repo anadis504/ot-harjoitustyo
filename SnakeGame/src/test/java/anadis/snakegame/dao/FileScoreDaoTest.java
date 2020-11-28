@@ -14,6 +14,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import java.io.File;
 
 /**
  *
@@ -22,6 +23,7 @@ import static org.junit.Assert.*;
 public class FileScoreDaoTest {
 
     FileScoreDao scores;
+    File test = new File("testfilescores.txt");
 
     public FileScoreDaoTest() {
     }
@@ -33,6 +35,7 @@ public class FileScoreDaoTest {
 
     @After
     public void tearDown() {
+        test.deleteOnExit();
     }
 
     @Test
@@ -51,16 +54,27 @@ public class FileScoreDaoTest {
 
     @Test
     public void checkNewHeghtscoreIsSeen() {
-        int newScore = scores.topTwenty().get(10).getScore();
-        Score newcomer = new Score("newcomer", newScore);
+        Score newcomer = new Score("newcomer", 10);
         scores.add(newcomer);
         assertTrue(scores.topTwenty().contains(newcomer));
     }
 
     @Test
     public void tooLowScoreNotAddedToTheScoreList() {
+        for (int i = 0; i < 20; i++) {
+            scores.add(new Score("alice", i));
+        }
         int newScore = scores.topTwenty().get(19).getScore() - 1;
         Score notEnough = new Score("LOOSER", newScore);
         assertFalse(scores.topTwenty().contains(notEnough));
+    }
+
+    @Test
+    public void testingNewHighScore() {
+        for (int i = 0; i < 20; i++) {
+            scores.add(new Score("alice", i));
+        }
+        int newScore = scores.topTwenty().get(18).getScore();
+        assertTrue(scores.newHighscore(newScore));
     }
 }

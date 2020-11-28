@@ -12,4 +12,6 @@
 | 17.11 | 2 | score-näkymän toteaminen käyttöliittymässä |
 | 17.11 | 1 | checkstyle ja refaktorointi |
 | **viikko 3** |
-|21-22.11 | 17 | pelifunktion ohjelmointi |
+| 21-22.11 | 17 | pelifunktion ohjelmointi |
+| 24.11 | 7 | testaus, debuggaus, refaktorointi |
+| yht | 44.5 |

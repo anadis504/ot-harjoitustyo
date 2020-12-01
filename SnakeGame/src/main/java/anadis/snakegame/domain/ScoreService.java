@@ -31,22 +31,25 @@ public class ScoreService {
     public VBox getScores() {
         VBox list = new VBox();
         int rank = 1;
-        for (Score score : dao.topTwenty()) {
-            StringBuilder sb = new StringBuilder();
-            if (rank < 10) {
-                sb.append("  ").append(rank++).append(" :   ");
-            } else {
-                sb.append(rank++).append(" :   ");
+        if (dao.topTwenty().size() == 0) {
+            list.getChildren().add(new Label("No hightscores yet"));
+        } else {
+            for (Score score : dao.topTwenty()) {
+                StringBuilder sb = new StringBuilder();
+                if (rank < 10) {
+                    sb.append("  ").append(rank++).append(" :   ");
+                } else {
+                    sb.append(rank++).append(" :   ");
+                }
+                sb.append(score.getName());
+                for (int i = 0; i < 16 - score.getName().length(); i++) {
+                    sb.append(" ");
+                }
+                sb.append(":   ");
+                list.getChildren().add(new Label(sb.toString() + score.getScore()));
             }
-            sb.append(score.getName());
-            for (int i = 0; i < 16 - score.getName().length(); i++) {
-                sb.append(" ");
-            }
-            sb.append(":   ");
-            list.getChildren().add(new Label(sb.toString() + score.getScore()));
         }
         return list;
     }
 
-    
 }

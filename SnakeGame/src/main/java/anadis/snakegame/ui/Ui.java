@@ -7,10 +7,7 @@ package anadis.snakegame.ui;
 
 import anadis.snakegame.scenes.ScoreScene;
 import anadis.snakegame.dao.FileScoreDao;
-import anadis.snakegame.dao.ScoreDao;
 import anadis.snakegame.domain.Direction;
-import anadis.snakegame.domain.GameService;
-import anadis.snakegame.domain.Score;
 import anadis.snakegame.domain.ScoreService;
 import anadis.snakegame.scenes.GameScene;
 import javafx.application.Application;
@@ -31,16 +28,16 @@ public class Ui extends Application {
     public static int width = 20;
     public static int height = 20;
     public static int blocksize = 25;
-//    private GameService gameService;
     private ScoreScene viewScores;
     private GameScene gameScene;
     private ScoreService scoreService;
+    public static Button back;
 
     public Ui() {
         this.scoreService = new ScoreService(new FileScoreDao("scores.txt"));
         this.viewScores = new ScoreScene(scoreService);
-//        this.gameService = new GameService();
         this.gameScene = new GameScene();
+        this.back = new Button("back to menu");
 
     }
 
@@ -64,19 +61,17 @@ public class Ui extends Application {
         selection.getChildren().addAll(newGame, scores);
         borderPane.setCenter(selection);
 
-        Button back = new Button("back to menu");
         back.setOnAction(e -> {
             borderPane.setCenter(selection);
+            gameScene.stopTimer();
         });
 
-        back.setVisible(false);
         scores.setOnAction((event) -> {
-            borderPane.setCenter(viewScores.getScene(back));
+            borderPane.setCenter(viewScores.getScene());
         });
 
         newGame.setOnAction(e -> {
-            gameScene.stopTimer();
-            borderPane.setCenter(gameScene.getScene(back));
+            borderPane.setCenter(gameScene.getScene());
         });
 
         Scene scene = new Scene(borderPane, width * blocksize, height * blocksize);

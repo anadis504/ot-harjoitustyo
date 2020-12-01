@@ -32,14 +32,14 @@ public class GameScene {
 
     }
 
-    public Pane getScene(Button back) {
+    public Pane getScene() {
 
-        this.gameService = new GameService(back);
+        this.gameService = new GameService();
         GridPane root = new GridPane();
         root.setPrefSize(width, height);
         Canvas canvas = new Canvas(width, height);
         GraphicsContext context = canvas.getGraphicsContext2D();
-        root.getChildren().addAll(canvas, back);
+        root.getChildren().addAll(canvas, Ui.back);
 
         this.timer = new AnimationTimer() {
             long lastTimeInstance = 0;

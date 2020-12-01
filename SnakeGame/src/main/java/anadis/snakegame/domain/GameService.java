@@ -16,19 +16,16 @@ import javafx.scene.paint.Color;
  */
 public class GameService {
 
-    private int width, height, blocksize, score;
+    private int width, height, score;
     private Snake snake;
     private Food food;
     private Direction direction;
     private boolean gameOver;
     private GraphicsContext context;
-    private Button back;
 
-    public GameService(Button back) {
-        this.back = back;
-        this.blocksize = Ui.blocksize;
-        this.height = Ui.height * blocksize;
-        this.width = Ui.width * blocksize;
+    public GameService() {
+        this.height = Ui.height * Ui.blocksize;
+        this.width = Ui.width * Ui.blocksize;
         this.snake = new Snake();
         this.food = new Food(5, 5);
         this.direction = Direction.RIGHT;
@@ -50,7 +47,8 @@ public class GameService {
 
     public void timeInstance(GraphicsContext context) {
         this.context = context;
-        back.setVisible(gameOver);
+        Ui.back.setVisible(gameOver);
+        System.out.println(Ui.back);
         
         if (gameOver) {
             paintGameOver();
@@ -76,13 +74,13 @@ public class GameService {
 
         Color color = food.getColor();
         context.setFill(color);
-        context.fillOval(food.getX() * blocksize, food.getY() * blocksize, blocksize, blocksize);
+        context.fillOval(food.getX() * Ui.blocksize, food.getY() * Ui.blocksize, Ui.blocksize, Ui.blocksize);
     }
 
     public void paintSnake() {
         for (Block block : snake.getSnake()) {
             context.setFill(Color.DARKSEAGREEN);
-            context.fillRect(block.getX() * blocksize, block.getY() * blocksize, blocksize, blocksize);
+            context.fillRect(block.getX() * Ui.blocksize, block.getY() * Ui.blocksize, Ui.blocksize, Ui.blocksize);
         }
     }
 

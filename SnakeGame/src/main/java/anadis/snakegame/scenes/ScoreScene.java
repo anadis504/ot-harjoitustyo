@@ -8,6 +8,7 @@ package anadis.snakegame.scenes;
 import anadis.snakegame.dao.ScoreDao;
 import anadis.snakegame.domain.Score;
 import anadis.snakegame.domain.ScoreService;
+import anadis.snakegame.ui.Ui;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -27,7 +28,7 @@ public class ScoreScene {
         this.scoreService = service;
     }
     
-    public Parent getScene(Button back) {
+    public Parent getScene() {
         
         GridPane pane = new GridPane();
         
@@ -41,8 +42,8 @@ public class ScoreScene {
         pane.add(tittle, 0, 0);
         
         pane.add(scoreService.getScores(), 0, 2);
-        back.setVisible(true);
-        pane.add(back, 2, 0);
+        Ui.back.setVisible(true);
+        pane.add(Ui.back, 2, 0);
         
         return pane;
     }

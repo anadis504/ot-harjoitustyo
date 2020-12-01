@@ -13,6 +13,8 @@ There will be only one user role and no need for signing in to the program.
 * Speed of snake is increasing.   [Done week 4]
 * Points are given by feeding the snake.  [Done week 4]
 * Game is over when snake crashes in in the frame or own body.  [Done week 4]
+* After GameOver user can return to the main menu. [Done week 5]
+* User can start a new game from the main menu. [Done week 5]
 * When achieving new highscores the player will be asked for a player name in order to keep track of the high-scores.  [NOT DONE]
 * Scores will be stored locally.    [Done week 3]
 * User may review the score statistics from GUI.   [Done week 3]

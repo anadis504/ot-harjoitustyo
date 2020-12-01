@@ -7,6 +7,7 @@ The program is to be written in Java with Maven. GUI is to be implemented using 
 There will be only one user role and no need for signing in to the program. 
 
 ## Primary features
+* From the main menu user can either look up the score statistics or start a new game. [Done week 5]
 * Snake line moves constantly forward.   [Done week 4]
 * User controlles the snake line on the screen using arrow keys.  [Done week 4]
 * Snake grows by eating objects on the screen.  [Done week 4]
@@ -15,7 +16,6 @@ There will be only one user role and no need for signing in to the program.
 * Game is over when snake crashes in in the frame or own body.  [Done week 4]
 * After GameOver user can return to the main menu. [Done week 5]
 * User can start a new game from the main menu. [Done week 5]
-* From the main menu user can either look up the score statistics or start a new game. [Done]
 * When achieving new highscores the player will be asked for a player name in order to keep track of the high-scores.  [NOT DONE]
 * Scores will be stored locally.    [Done week 3]
 * User may review the score statistics from GUI.   [Done week 3]

@@ -4,6 +4,9 @@
 
 The classic snake-game desctop application: a single-player computer game where the player manouvers a growing line (snake) moving on the screen.
 
+## Releaset
+[Viikko 5](https://github.com/anadis504/ot-harjoitustyo/releases/tag/Viikko5)
+
 ## Dokumentaatio
 [vaatimusmäärittely](https://github.com/anadis504/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusm%C3%A4%C3%A4rittely.md)
 

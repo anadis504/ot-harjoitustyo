@@ -7,6 +7,7 @@ package anadis.snakegame.domain;
 
 import anadis.snakegame.dao.FileScoreDao;
 import anadis.snakegame.dao.ScoreDao;
+import java.util.List;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
@@ -30,11 +31,12 @@ public class ScoreService {
 
     public VBox getScores() {
         VBox list = new VBox();
+        List<Score> scores = dao.topTwenty();
         int rank = 1;
-        if (dao.topTwenty().size() == 0) {
+        if (scores.size() == 0) {
             list.getChildren().add(new Label("No hightscores yet"));
         } else {
-            for (Score score : dao.topTwenty()) {
+            for (Score score : scores) {
                 StringBuilder sb = new StringBuilder();
                 if (rank < 10) {
                     sb.append("  ").append(rank++).append(" :   ");

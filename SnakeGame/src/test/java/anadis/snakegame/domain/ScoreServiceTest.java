@@ -53,4 +53,12 @@ public class ScoreServiceTest {
         verify(dao, times(0)).add(anyObject());
     }
     
+//    @Test
+//    public void returnsLabelWhenAskedForScores() {
+//        List<Score> scores = new ArrayList<>();
+//        scores.add(new Score("bob", 12));
+//        when(dao.topTwenty()).thenReturn(scores);
+//        scoreService.getScores();
+//        verify(dao, times(1)).topTwenty();
+//    }
 }

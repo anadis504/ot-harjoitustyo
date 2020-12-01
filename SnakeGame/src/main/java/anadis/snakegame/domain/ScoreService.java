@@ -30,11 +30,11 @@ public class ScoreService {
     }
 
     public VBox getScores() {
-        VBox list = new VBox();
+        VBox scorelist = new VBox();
         List<Score> scores = dao.topTwenty();
         int rank = 1;
         if (scores.size() == 0) {
-            list.getChildren().add(new Label("No hightscores yet"));
+            scorelist.getChildren().add(new Label("No hightscores yet"));
         } else {
             for (Score score : scores) {
                 StringBuilder sb = new StringBuilder();
@@ -48,10 +48,10 @@ public class ScoreService {
                     sb.append(" ");
                 }
                 sb.append(":   ");
-                list.getChildren().add(new Label(sb.toString() + score.getScore()));
+                scorelist.getChildren().add(new Label(sb.toString() + score.getScore()));
             }
         }
-        return list;
+        return scorelist;
     }
 
 }

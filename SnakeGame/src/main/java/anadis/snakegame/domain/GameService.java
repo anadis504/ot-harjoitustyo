@@ -48,7 +48,6 @@ public class GameService {
     public void timeInstance(GraphicsContext context) {
         this.context = context;
         Ui.back.setVisible(gameOver);
-        System.out.println(Ui.back);
         
         if (gameOver) {
             paintGameOver();

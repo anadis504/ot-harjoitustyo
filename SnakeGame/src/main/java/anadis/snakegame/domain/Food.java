@@ -5,6 +5,7 @@
  */
 package anadis.snakegame.domain;
 
+import anadis.snakegame.ui.Ui;
 import java.util.Random;
 import javafx.scene.paint.Color;
 
@@ -41,9 +42,9 @@ public class Food extends Block {
         }
     }
 
-    public void relocate(int width, int height) {
-        super.setX(random.nextInt(width));
-        super.setY(random.nextInt(height));
+    public void relocate() {
+        super.setX(random.nextInt(Ui.width));
+        super.setY(random.nextInt(Ui.height));
         this.color = random.nextInt(6);
     }
 }

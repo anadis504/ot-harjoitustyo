@@ -40,7 +40,7 @@ public class FoodTest {
     public void foodRelocatedSuccessfully() {
         Food newFood = new Food(0, 0);
         assertTrue(newFood.getColor().toString().matches("0x(.*)"));
-        food.relocate(20, 20);
+        food.relocate();
         assertTrue(food.getColor().toString().matches("0x(.*)"));
         assertFalse(food.equals(newFood));
     }

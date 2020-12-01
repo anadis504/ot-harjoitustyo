@@ -31,7 +31,7 @@ public class Ui extends Application {
     public static int width = 20;
     public static int height = 20;
     public static int blocksize = 25;
-    private GameService gameService;
+//    private GameService gameService;
     private ScoreScene viewScores;
     private GameScene gameScene;
     private ScoreService scoreService;
@@ -39,13 +39,14 @@ public class Ui extends Application {
     public Ui() {
         this.scoreService = new ScoreService(new FileScoreDao("scores.txt"));
         this.viewScores = new ScoreScene(scoreService);
-        this.gameService = new GameService();
-        this.gameScene = new GameScene(gameService);
+//        this.gameService = new GameService();
+        this.gameScene = new GameScene();
 
     }
 
     @Override
     public void init() throws Exception {
+
     }
 
     @Override
@@ -63,35 +64,38 @@ public class Ui extends Application {
         selection.getChildren().addAll(newGame, scores);
         borderPane.setCenter(selection);
 
-        scores.setOnAction((event) -> {
-            Button back = new Button("back to menu");
-            back.setOnAction(e -> {
-                borderPane.setCenter(selection);
-            });
-            borderPane.setCenter(viewScores.getScene(back));
+        Button back = new Button("back to menu");
+        back.setOnAction(e -> {
+            borderPane.setCenter(selection);
+        });
 
+        back.setVisible(false);
+        scores.setOnAction((event) -> {
+            borderPane.setCenter(viewScores.getScene(back));
         });
 
         newGame.setOnAction(e -> {
-            borderPane.setCenter(gameScene.getScene());
+            gameScene.stopTimer();
+            borderPane.setCenter(gameScene.getScene(back));
         });
 
         Scene scene = new Scene(borderPane, width * blocksize, height * blocksize);
 
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.UP) {
-                gameService.setDirection(Direction.UP);
+                gameScene.getService().setDirection(Direction.UP);
             }
             if (event.getCode() == KeyCode.RIGHT) {
-                gameService.setDirection(Direction.RIGHT);
+                gameScene.getService().setDirection(Direction.RIGHT);
             }
             if (event.getCode() == KeyCode.DOWN) {
-                gameService.setDirection(Direction.DOWN);
+                gameScene.getService().setDirection(Direction.DOWN);
             }
             if (event.getCode() == KeyCode.LEFT) {
-                gameService.setDirection(Direction.LEFT);
+                gameScene.getService().setDirection(Direction.LEFT);
             }
         });
+
         window.setScene(scene);
         window.setTitle("SNAKE GAME");
         window.show();

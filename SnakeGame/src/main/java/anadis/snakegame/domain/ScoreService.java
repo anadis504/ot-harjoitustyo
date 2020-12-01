@@ -24,7 +24,7 @@ public class ScoreService {
 
     public void addScore(String name, int score) {
         if (dao.newHighscore(score)) {
-            
+            dao.add(new Score(name, score));
         }
     }
 

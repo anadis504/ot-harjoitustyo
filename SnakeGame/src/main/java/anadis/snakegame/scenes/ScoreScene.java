@@ -40,10 +40,8 @@ public class ScoreScene {
         
         pane.add(tittle, 0, 0);
         
-//        if (dao.topTwenty().size() == 0) {
-//            pane.add(new Label("no highscores yet"), 0, 2);
-//        }
         pane.add(scoreService.getScores(), 0, 2);
+        back.setVisible(true);
         pane.add(back, 2, 0);
         
         return pane;

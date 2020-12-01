@@ -7,6 +7,7 @@ package anadis.snakegame.domain;
 
 import anadis.snakegame.ui.Ui;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 
 /**
@@ -20,8 +21,11 @@ public class GameService {
     private Food food;
     private Direction direction;
     private boolean gameOver;
+    private GraphicsContext context;
+    private Button back;
 
-    public GameService() {
+    public GameService(Button back) {
+        this.back = back;
         this.blocksize = Ui.blocksize;
         this.height = Ui.height * blocksize;
         this.width = Ui.width * blocksize;
@@ -31,20 +35,25 @@ public class GameService {
         this.gameOver = false;
         this.score = 0;
     }
-    
+
     public void setDirection(Direction direction) {
         this.direction = direction;
     }
-    
+
     public int getScore() {
         return this.score;
     }
     
+    public boolean getGameOver() {
+        return this.gameOver;
+    }
+
     public void timeInstance(GraphicsContext context) {
+        this.context = context;
+        back.setVisible(gameOver);
         
         if (gameOver) {
-            context.setFill(Color.RED);
-            context.fillText("GAME OVER", width / 2, height / 2);
+            paintGameOver();
             return;
         }
 
@@ -52,33 +61,48 @@ public class GameService {
         snake.turn(direction);
 
         if (snake.getSnake().get(0).equals(food)) {
-            snake.grow();
-            score++;
-            food.relocate(width, height);
+            eat();
         }
 
         if (snake.bodyCrash()) {
             gameOver = true;
         }
-
-        fill(context);
+        paintBackground();
+        paintFood();
+        paintSnake();
     }
-    
-    public void fill(GraphicsContext context) {
-        context.setFill(Color.BEIGE);
-        context.fillRect(0, 0, width, height);
 
-        context.setFill(Color.DEEPSKYBLUE);
-        context.fillText("Score: " + score, 10, 30);
+    public void paintFood() {
 
         Color color = food.getColor();
-
         context.setFill(color);
         context.fillOval(food.getX() * blocksize, food.getY() * blocksize, blocksize, blocksize);
+    }
 
+    public void paintSnake() {
         for (Block block : snake.getSnake()) {
             context.setFill(Color.DARKSEAGREEN);
             context.fillRect(block.getX() * blocksize, block.getY() * blocksize, blocksize, blocksize);
         }
     }
+
+    public void eat() {
+        snake.grow();
+        score++;
+        food.relocate();
+    }
+
+    public void paintGameOver() {
+        context.setFill(Color.RED);
+        context.fillText("GAME OVER \nYOUR SCORE " + score, width / 3, height / 2);
+    }
+
+    public void paintBackground() {
+        context.setFill(Color.BEIGE);
+        context.fillRect(0, 0, width, height);
+
+        context.setFill(Color.DEEPSKYBLUE);
+        context.fillText("Score: " + score, 10, 30);
+    }
+
 }

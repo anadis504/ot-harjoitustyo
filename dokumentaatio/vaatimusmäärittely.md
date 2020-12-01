@@ -26,5 +26,8 @@ There will be only one user role and no need for signing in to the program.
   * No frame, snake appears on the opposite side of the screen when hitting the frame.   [Done week 4 (this is the default and only frame)] 
   * Partly framed, different obstacles.
 
+### Issues
+As of 1.12.2020 there is (at least) one bug in the program. The "back to menu" button does not work propperly when "Game Over". It works fine until user selects "view scores", after which the button does not appear in the game frame when "Game Over". All advice are heartly welcome!
+
 ## GUI scetch
 <img src="https://github.com/anadis504/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/20201110_212041.jpg" width=750>

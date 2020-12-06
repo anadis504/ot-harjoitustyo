@@ -13,6 +13,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 
 /**
  *
@@ -47,12 +48,12 @@ public class GameScene {
             public void handle(long now) {
                 if (lastTimeInstance == 0) {
                     lastTimeInstance = now;
-                    gameService.timeInstance(context);
+                    timeInstance(context);
                 }
 
                 if (now - lastTimeInstance > 1000000000 / (gameService.getScore() + 5)) {
                     lastTimeInstance = now;
-                    gameService.timeInstance(context);
+                    timeInstance(context);
                 }
 
             }
@@ -62,6 +63,48 @@ public class GameScene {
         return root;
     }
 
+    public void timeInstance(GraphicsContext context) {
+        boolean gameOver = gameService.getGameOver();
+        Ui.back.setVisible(gameOver);
+        
+        if (gameOver) {
+            paintGameOver(context);
+            return;
+        }
+        gameService.gameUnit();
+        paintBackground(context);
+        paintFood(context);
+        paintSnake(context);
+        
+    }
+    
+    public void paintGameOver(GraphicsContext context) {
+        context.setFill(Color.RED);
+        context.fillText("GAME OVER\nYOUR SCORE  " + gameService.getScore(), width / 3, height / 2);
+    }
+    
+    public void paintBackground(GraphicsContext context) {
+        context.setFill(Color.BEIGE);
+        context.fillRect(0, 0, width, height);
+
+        context.setFill(Color.DEEPSKYBLUE);
+        context.fillText("Score: " + gameService.getScore(), 10, 30);
+    }
+    
+    public void paintFood(GraphicsContext context) {
+        gameService.foodColor();
+        Color color = Color.web(gameService.foodColor());
+        context.setFill(color);
+        context.fillOval(gameService.foodX(), gameService.foodY(), Ui.blocksize, Ui.blocksize);
+    }
+    
+    public void paintSnake(GraphicsContext context) {
+        for (Block block : gameService.getSnake()) {
+            context.setFill(Color.DARKSEAGREEN);
+            context.fillRect(block.getX() * Ui.blocksize, block.getY() * Ui.blocksize, Ui.blocksize, Ui.blocksize);
+        }
+    }
+    
     public GameService getService() {
         return this.gameService;
     }

@@ -56,7 +56,6 @@ public class Snake {
 
     public void turn(Direction direction) {
         snake.get(0).setDirection(direction);
-        border();
     }
 
     public boolean bodyCrash() {

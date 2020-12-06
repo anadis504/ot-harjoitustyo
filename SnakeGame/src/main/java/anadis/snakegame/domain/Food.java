@@ -7,7 +7,6 @@ package anadis.snakegame.domain;
 
 import anadis.snakegame.ui.Ui;
 import java.util.Random;
-import javafx.scene.paint.Color;
 
 /**
  *
@@ -15,36 +14,24 @@ import javafx.scene.paint.Color;
  */
 public class Food extends Block {
 
-    private int color;
+    private String color;
     private Random random;
+    private String[] colors = {"orange","pink","blue","grey"};
 
     public Food(int x, int y) {
         super(x, y);
         this.random = new Random();
-        this.color = random.nextInt(6);
+        this.color = colors[random.nextInt(colors.length)];
     }
 
-    public Color getColor() {
+    public String getColor() {
 
-        switch (color) {
-            case 0:
-                return Color.PINK;
-            case 1:
-                return Color.VIOLET;
-            case 2:
-                return Color.BLUE;
-            case 3:
-                return Color.BROWN;
-            case 4:
-                return Color.TOMATO;
-            default:
-                return Color.ORANGE;
-        }
+        return this.color;
     }
 
     public void relocate() {
         super.setX(random.nextInt(Ui.width));
         super.setY(random.nextInt(Ui.height));
-        this.color = random.nextInt(6);
+        this.color = colors[random.nextInt(colors.length)];
     }
 }

@@ -6,6 +6,7 @@
 package anadis.snakegame.domain;
 
 import anadis.snakegame.ui.Ui;
+import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
@@ -45,17 +46,11 @@ public class GameService {
         return this.gameOver;
     }
 
-    public void timeInstance(GraphicsContext context) {
-        this.context = context;
-        Ui.back.setVisible(gameOver);
+    public void gameUnit() {
         
-        if (gameOver) {
-            paintGameOver();
-            return;
-        }
-
         snake.move();
         snake.turn(direction);
+        snake.border();
 
         if (snake.getSnake().get(0).equals(food)) {
             eat();
@@ -64,18 +59,25 @@ public class GameService {
         if (snake.bodyCrash()) {
             gameOver = true;
         }
-        paintBackground();
-        paintFood();
-        paintSnake();
+
     }
 
-    public void paintFood() {
-
-        Color color = food.getColor();
-        context.setFill(color);
-        context.fillOval(food.getX() * Ui.blocksize, food.getY() * Ui.blocksize, Ui.blocksize, Ui.blocksize);
+    public String foodColor() {
+        return food.getColor();
     }
 
+    public int foodX() {
+        return food.getX() * Ui.blocksize;
+    }
+    
+    public int foodY() {
+        return food.getY() * Ui.blocksize;
+    }
+    
+    public List<Block> getSnake() {
+        return snake.getSnake();        
+    }
+    
     public void paintSnake() {
         for (Block block : snake.getSnake()) {
             context.setFill(Color.DARKSEAGREEN);
@@ -89,10 +91,7 @@ public class GameService {
         food.relocate();
     }
 
-    public void paintGameOver() {
-        context.setFill(Color.RED);
-        context.fillText("GAME OVER \nYOUR SCORE " + score, width / 3, height / 2);
-    }
+    
 
     public void paintBackground() {
         context.setFill(Color.BEIGE);

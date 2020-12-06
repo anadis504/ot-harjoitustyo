@@ -44,7 +44,6 @@ public class ScoreScene {
         for (String score : scoreService.getScores()) {
             pane.add(new Label(score), 0, i++);
         }
-//        pane.add(scoreService.getScores(), 0, 2);
         Ui.back.setVisible(true);
         pane.add(Ui.back, 2, 0);
         

@@ -57,6 +57,7 @@ public class Ui extends Application {
 
         Button newGame = new Button("New game");
         Button scores = new Button("Scores");
+        Button backFromScores = new Button("back to menu");
 
         selection.getChildren().addAll(newGame, scores);
         borderPane.setCenter(selection);
@@ -65,8 +66,12 @@ public class Ui extends Application {
             borderPane.setCenter(selection);
         });
 
+        backFromScores.setOnAction(e -> {
+            borderPane.setCenter(selection);
+        });
+        
         scores.setOnAction((event) -> {
-            borderPane.setCenter(viewScores.getScene());
+            borderPane.setCenter(viewScores.getScene(backFromScores));
         });
 
         newGame.setOnAction(e -> {

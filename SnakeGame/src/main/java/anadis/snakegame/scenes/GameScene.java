@@ -45,6 +45,7 @@ public class GameScene {
         this.timer = new AnimationTimer() {
             long lastTimeInstance = 0;
 
+            @Override
             public void handle(long now) {
                 if (lastTimeInstance == 0) {
                     lastTimeInstance = now;

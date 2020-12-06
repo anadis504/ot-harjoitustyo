@@ -28,7 +28,7 @@ public class ScoreScene {
         this.scoreService = service;
     }
     
-    public Parent getScene() {
+    public Parent getScene(Button backButton) {
         
         GridPane pane = new GridPane();
         
@@ -45,7 +45,7 @@ public class ScoreScene {
             pane.add(new Label(score), 0, i++);
         }
         Ui.back.setVisible(true);
-        pane.add(Ui.back, 2, 0);
+        pane.add(backButton, 2, 0);
         
         return pane;
     }

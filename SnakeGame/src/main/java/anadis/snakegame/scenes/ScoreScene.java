@@ -40,8 +40,11 @@ public class ScoreScene {
         pane.setPadding(new Insets(10, 10, 10, 10));
         
         pane.add(tittle, 0, 0);
-        
-        pane.add(scoreService.getScores(), 0, 2);
+        int i = 2;
+        for (String score : scoreService.getScores()) {
+            pane.add(new Label(score), 0, i++);
+        }
+//        pane.add(scoreService.getScores(), 0, 2);
         Ui.back.setVisible(true);
         pane.add(Ui.back, 2, 0);
         

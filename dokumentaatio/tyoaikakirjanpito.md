@@ -14,4 +14,8 @@
 | **viikko 3** |
 | 21-22.11 | 17 | pelifunktion ohjelmointi |
 | 24.11 | 7 | testaus, debuggaus, refaktorointi |
-| yht | 44.5 |
+| **viikko 4** |
+| 28.11 | 7 | service luokien implementointi ja refaktorointi, testien korjaaminen |
+| 1.12 | 6 | main menu:un palauttaminen kun Game Over toiminnallisuuden lisäys |
+| 1.12 | 3 | testaus |
+| yht | 60.5 |

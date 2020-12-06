@@ -34,17 +34,17 @@ public class ScoreService {
         return false;
     }
     
-    public List<String> getScores() {
-        ArrayList<String> scorelist = new ArrayList<>();
+    public List<String[]> getScores() {
+        ArrayList<String[]> scorelist = new ArrayList<>();
         List<Score> scores = dao.topTwenty();
         int rank = 1;
         if (scores.isEmpty()) {
-            scorelist.add("No hightscores yet");
+            String[] tbl = {"No hightscores yet"};
+            scorelist.add(tbl);
         } else {
             for (Score score : scores) {
-                scorelist.add(String.format("%-3d", rank++)
-                        + String.format("%-24s", score.getName()) + " : " 
-                        + String.format("%12d", score.getScore()));
+                String[] scoretbl = {score.getName(), Integer.toString(score.getScore())};
+                scorelist.add(scoretbl);
             }
         }
         return scorelist;

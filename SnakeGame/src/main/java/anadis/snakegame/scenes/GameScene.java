@@ -51,7 +51,7 @@ public class GameScene {
         TextField inputField = new TextField();
         Button submit = new Button("save");
         
-        submit.setOnMouseClicked(e -> {
+        submit.setOnAction(e -> {
             String nickname = inputField.getText();
             System.out.println(inputField.getText());
             scoreService.addScore(nickname, gameService.getScore());

@@ -35,14 +35,18 @@ public class ScoreScene {
         Label tittle = new Label("Top Twenty Scores");
         
         pane.setAlignment(Pos.TOP_CENTER);
-        pane.setVgap(10);
-        pane.setHgap(10);
+        pane.setVgap(5);
+        pane.setHgap(5);
         pane.setPadding(new Insets(10, 10, 10, 10));
         
         pane.add(tittle, 0, 0);
         int i = 2;
-        for (String score : scoreService.getScores()) {
-            pane.add(new Label(score), 0, i++);
+        for (String[] score : scoreService.getScores()) {
+            pane.add(new Label(Integer.toString(i-1)), 0, i);
+            pane.add(new Label(score[0]), 1, i);
+            pane.add(new Label(" : "), 2, i);
+            pane.add(new Label(score[1]), 3, i);
+            i++;
         }
         Ui.back.setVisible(true);
         pane.add(backButton, 2, 0);

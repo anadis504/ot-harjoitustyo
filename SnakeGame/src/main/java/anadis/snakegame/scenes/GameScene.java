@@ -12,6 +12,8 @@ import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
@@ -24,10 +26,13 @@ public class GameScene {
     private int width;
     private int height;
     private GameService gameService;
+    private ScoreService scoreService;
     private AnimationTimer timer;
+    private VBox inputForm;
 
-    public GameScene() {
+    public GameScene(ScoreService service) {
 
+        this.scoreService = service;
         this.width = Ui.width * Ui.blocksize;
         this.height = Ui.height * Ui.blocksize;
 
@@ -40,7 +45,21 @@ public class GameScene {
         root.setPrefSize(width, height);
         Canvas canvas = new Canvas(width, height);
         GraphicsContext context = canvas.getGraphicsContext2D();
-        root.getChildren().addAll(canvas, Ui.back);
+        
+        this.inputForm = new VBox();
+        Label namelabel = new Label("your name");
+        TextField inputField = new TextField();
+        Button submit = new Button("save");
+        
+        submit.setOnMouseClicked(e -> {
+            String nickname = inputField.getText();
+            System.out.println(inputField.getText());
+            scoreService.addScore(nickname, gameService.getScore());
+            Ui.back.fire();
+        });
+        inputForm.getChildren().addAll(namelabel, inputField, submit);
+        inputForm.setVisible(false);
+        root.getChildren().addAll(canvas, Ui.back, inputForm);
 
         this.timer = new AnimationTimer() {
             long lastTimeInstance = 0;
@@ -77,12 +96,13 @@ public class GameScene {
         paintBackground(context);
         paintFood(context);
         paintSnake(context);
-        
+       
     }
     
     public void paintGameOver(GraphicsContext context) {
         context.setFill(Color.RED);
         context.fillText("GAME OVER\nYOUR SCORE  " + gameService.getScore(), width / 3, height / 2);
+        this.inputForm.setVisible(scoreService.isTopTwenty(gameService.getScore()));
     }
     
     public void paintBackground(GraphicsContext context) {

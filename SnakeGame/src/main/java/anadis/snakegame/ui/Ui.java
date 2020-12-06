@@ -36,9 +36,8 @@ public class Ui extends Application {
     public Ui() {
         this.scoreService = new ScoreService(new FileScoreDao("scores.txt"));
         this.viewScores = new ScoreScene(scoreService);
-        this.gameScene = new GameScene();
+        this.gameScene = new GameScene(scoreService);
         this.back = new Button("back to menu");
-
     }
 
     @Override

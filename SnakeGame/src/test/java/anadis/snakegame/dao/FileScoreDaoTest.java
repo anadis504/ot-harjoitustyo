@@ -5,13 +5,9 @@
  */
 package anadis.snakegame.dao;
 
-import anadis.snakegame.dao.FileScoreDao;
 import anadis.snakegame.domain.Score;
-import java.nio.file.Path;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import java.io.File;
@@ -52,29 +48,4 @@ public class FileScoreDaoTest {
         assertEquals(highest, scores.topTwenty().get(0).getScore());
     }
 
-    @Test
-    public void checkNewHeghtscoreIsSeen() {
-        Score newcomer = new Score("newcomer", 10);
-        scores.add(newcomer);
-        assertTrue(scores.topTwenty().contains(newcomer));
-    }
-
-    @Test
-    public void tooLowScoreNotAddedToTheScoreList() {
-        for (int i = 0; i < 20; i++) {
-            scores.add(new Score("alice", i));
-        }
-        int newScore = scores.topTwenty().get(19).getScore() - 1;
-        Score notEnough = new Score("LOOSER", newScore);
-        assertFalse(scores.topTwenty().contains(notEnough));
-    }
-
-    @Test
-    public void testingNewHighScore() {
-        for (int i = 0; i < 20; i++) {
-            scores.add(new Score("alice", i));
-        }
-        int newScore = scores.topTwenty().get(18).getScore();
-        assertTrue(scores.newHighscore(newScore));
-    }
 }

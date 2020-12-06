@@ -7,10 +7,6 @@ package anadis.snakegame.domain;
 
 import anadis.snakegame.dao.FileScoreDao;
 import anadis.snakegame.dao.ScoreDao;
-import anadis.snakegame.domain.Score;
-import java.util.ArrayList;
-import java.util.List;
-import javafx.scene.layout.VBox;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -39,19 +35,19 @@ public class ScoreServiceTest {
     public void tearDown() {
     }
 
-    @Test
-    public void testingCallAddingMethod() {
-        when(dao.newHighscore(anyInt())).thenReturn(true);
-        scoreService.addScore("bob", 12);
-        verify(dao, times(1)).newHighscore(12);
-    }
-    
-    @Test
-    public void serviceDoesNotAddWhenScoreTooLow() {
-        when(dao.newHighscore(anyInt())).thenReturn(false);
-        scoreService.addScore("bob", 11);
-        verify(dao, times(0)).add(anyObject());
-    }
+//    @Test
+//    public void testingCallAddingMethod() {
+//        when(dao.newHighscore(anyInt())).thenReturn(true);
+//        scoreService.addScore("bob", 12);
+//        verify(dao, times(1)).newHighscore(12);
+//    }
+//    
+//    @Test
+//    public void serviceDoesNotAddWhenScoreTooLow() {
+//        when(dao.newHighscore(anyInt())).thenReturn(false);
+//        scoreService.addScore("bob", 11);
+//        verify(dao, times(0)).add(anyObject());
+//    }
     
 //    @Test
 //    public void returnsLabelWhenAskedForScores() {

@@ -15,5 +15,4 @@ import java.util.List;
 public interface ScoreDao {
     List<Score> topTwenty();
     void add(Score score);
-    boolean newHighscore(int points);
 }

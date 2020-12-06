@@ -22,11 +22,18 @@ public class ScoreService {
     }
 
     public void addScore(String name, int score) {
-        if (dao.newHighscore(score)) {
+        if (isTopTwenty(score)) {
             dao.add(new Score(name, score));
         }
     }
 
+    public boolean isTopTwenty(int points) {
+        if (dao.topTwenty().size() < 20 || points > dao.topTwenty().get(19).getScore()) {
+            return true;
+        }
+        return false;
+    }
+    
     public List<String> getScores() {
         ArrayList<String> scorelist = new ArrayList<>();
         List<Score> scores = dao.topTwenty();
@@ -35,8 +42,8 @@ public class ScoreService {
             scorelist.add("No hightscores yet");
         } else {
             for (Score score : scores) {
-                scorelist.add(String.format("%-3d", rank)
-                        + String.format("%-20s", score.getName()) + " : " 
+                scorelist.add(String.format("%-3d", rank++)
+                        + String.format("%-24s", score.getName()) + " : " 
                         + String.format("%12d", score.getScore()));
             }
         }

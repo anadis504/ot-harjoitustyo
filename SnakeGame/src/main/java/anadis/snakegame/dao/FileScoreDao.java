@@ -55,18 +55,8 @@ public class FileScoreDao implements ScoreDao {
                 String line = score.getName() + ";" + score.getScore() + "\n";
                 writer.write(line);
             }
-
             writer.close();
         } catch (Exception ex) {
         }
     }
-
-    @Override
-    public boolean newHighscore(int points) {
-        if (points > scores.get(scores.size() - 1).getScore()) {
-            return true;
-        }
-        return false;
-    }
-
 }

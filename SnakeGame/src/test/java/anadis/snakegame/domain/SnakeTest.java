@@ -70,20 +70,24 @@ public class SnakeTest {
         snake.move();
         assertTrue(snake.getSnake().get(0).equals(snake.getSnake().get(1)));
     }
-    
+
     @Test
     public void snakesCoordinatesCorrectWhenSnakeMovesOutsideOfFrame() {
         snake.turn(Direction.LEFT);
+        snake.border();
         assertEquals(19, snake.getSnake().get(0).getX());
         snake.turn(Direction.RIGHT);
+        snake.border();
         assertEquals(0, snake.getSnake().get(0).getX());
         snake.getSnake().get(0).setY(0);
         snake.turn(Direction.UP);
+        snake.border();
         assertEquals(19, snake.getSnake().get(0).getY());
         snake.turn(Direction.DOWN);
+        snake.border();
         assertEquals(0, snake.getSnake().get(0).getY());
     }
-    
+
     @Test
     public void bodyCrashWhenSnakeTurnsOppositeDirection() {
         snake.turn(Direction.DOWN);

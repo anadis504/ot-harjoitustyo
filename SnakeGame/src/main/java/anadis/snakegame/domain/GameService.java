@@ -8,7 +8,6 @@ package anadis.snakegame.domain;
 import anadis.snakegame.ui.Ui;
 import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 
 /**
@@ -59,7 +58,6 @@ public class GameService {
         if (snake.bodyCrash()) {
             gameOver = true;
         }
-
     }
 
     public String foodColor() {
@@ -90,8 +88,6 @@ public class GameService {
         score++;
         food.relocate();
     }
-
-    
 
     public void paintBackground() {
         context.setFill(Color.BEIGE);

@@ -69,6 +69,7 @@ public class GameScene {
         
         if (gameOver) {
             paintGameOver(context);
+            timer.stop();
             return;
         }
         gameService.gameUnit();

@@ -19,7 +19,7 @@
 | 1.12 | 6 | main menu:un palauttaminen kun Game Over toiminnallisuuden lisäys |
 | 1.12 | 3 | testaus |
 | **viikko 6** |
-| 6.12 | 2 | Service luokien refaktorointi: käyttöliitymän ja sovelluslogiikan erottelu |
+| 6.12 | 2 | Service-luoklien refaktorointi: käyttöliitymän ja sovelluslogiikan erottelu |
 | 6.12 | 2 | back-napin bugikorjaaminen |
 | 6.12 | 2 | pisteiden lisäämistoiminnallisuuden ohjelmointi ja GUI muokkaminen |
 | yht | 66.5 |

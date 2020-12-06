@@ -5,6 +5,7 @@
  */
 package anadis.snakegame.domain;
 
+import javafx.scene.paint.Color;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,17 +32,22 @@ public class FoodTest {
     public void tearDown() {
     }
 
-    @Test
-    public void foodInitedWithColor() {
-        assertTrue(food.getColor().toString().matches("0x(.*)"));
-    }
-
+//    @Test
+//    public void foodInitedWithColor() {
+//        assertTrue(food.getColor().toString().matches("0x(.*)"));
+//    }
+//
     @Test
     public void foodRelocatedSuccessfully() {
         Food newFood = new Food(0, 0);
-        assertTrue(newFood.getColor().toString().matches("0x(.*)"));
         food.relocate();
-        assertTrue(food.getColor().toString().matches("0x(.*)"));
         assertFalse(food.equals(newFood));
+    }
+    
+    @Test
+    public void allColorsAreLigitColors() {
+        for (String color : food.getColors()) {
+            assertEquals(Color.class, Color.web(color).getClass());
+        }
     }
 }

@@ -8,7 +8,6 @@ package anadis.snakegame.domain;
 import anadis.snakegame.ui.Ui;
 import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 
 /**

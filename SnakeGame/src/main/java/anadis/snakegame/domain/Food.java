@@ -16,7 +16,9 @@ public class Food extends Block {
 
     private String color;
     private Random random;
-    private String[] colors = {"orange","pink","blue","grey"};
+    private String[] colors = {"orange","pink","blue","grey","peru","tomato",
+        "lightsteelblue","firebrick","skyblue","deeppink","steelblue",
+        "palevioletred","olive","lightcoral","goldenrod","dodgerblue"};
 
     public Food(int x, int y) {
         super(x, y);
@@ -33,5 +35,9 @@ public class Food extends Block {
         super.setX(random.nextInt(Ui.width));
         super.setY(random.nextInt(Ui.height));
         this.color = colors[random.nextInt(colors.length)];
+    }
+    
+    public String[] getColors() {
+        return this.colors;
     }
 }

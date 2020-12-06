@@ -8,6 +8,7 @@ package anadis.snakegame.scenes;
 import anadis.snakegame.domain.*;
 import anadis.snakegame.ui.Ui;
 import javafx.animation.AnimationTimer;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -46,19 +47,7 @@ public class GameScene {
         Canvas canvas = new Canvas(width, height);
         GraphicsContext context = canvas.getGraphicsContext2D();
         
-        this.inputForm = new VBox();
-        Label namelabel = new Label("your name");
-        TextField inputField = new TextField();
-        Button submit = new Button("save");
-        
-        submit.setOnAction(e -> {
-            String nickname = inputField.getText();
-            System.out.println(inputField.getText());
-            scoreService.addScore(nickname, gameService.getScore());
-            Ui.back.fire();
-        });
-        inputForm.getChildren().addAll(namelabel, inputField, submit);
-        inputForm.setVisible(false);
+        this.initNewScoreForm();
         root.getChildren().addAll(canvas, Ui.back, inputForm);
 
         this.timer = new AnimationTimer() {
@@ -103,6 +92,7 @@ public class GameScene {
         context.setFill(Color.RED);
         context.fillText("GAME OVER\nYOUR SCORE  " + gameService.getScore(), width / 3, height / 2);
         this.inputForm.setVisible(scoreService.isTopTwenty(gameService.getScore()));
+        Ui.back.setVisible(!scoreService.isTopTwenty(gameService.getScore()));
     }
     
     public void paintBackground(GraphicsContext context) {
@@ -125,6 +115,26 @@ public class GameScene {
             context.setFill(Color.DARKSEAGREEN);
             context.fillRect(block.getX() * Ui.blocksize, block.getY() * Ui.blocksize, Ui.blocksize, Ui.blocksize);
         }
+    }
+    
+    public void initNewScoreForm() {
+        this.inputForm = new VBox();
+        inputForm.setAlignment(Pos.TOP_CENTER);
+        inputForm.setSpacing(10);
+        inputForm.setPadding(new Insets(50,100,50,100));
+        Label namelabel = new Label("your name");
+        TextField inputField = new TextField();
+        Button submit = new Button("save");
+        
+        submit.setOnAction(e -> {
+            String nickname = inputField.getText();
+            System.out.println(inputField.getText());
+            scoreService.addScore(nickname, gameService.getScore());
+            Ui.back.fire();
+        });
+        
+        inputForm.getChildren().addAll(namelabel, inputField, submit);
+        inputForm.setVisible(false);
     }
     
     public GameService getService() {

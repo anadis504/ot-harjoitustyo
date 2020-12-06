@@ -63,7 +63,6 @@ public class Ui extends Application {
 
         back.setOnAction(e -> {
             borderPane.setCenter(selection);
-            gameScene.stopTimer();
         });
 
         scores.setOnAction((event) -> {

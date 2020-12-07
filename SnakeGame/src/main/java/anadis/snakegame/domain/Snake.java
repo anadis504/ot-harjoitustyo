@@ -23,17 +23,19 @@ public class Snake {
      * Initializing the snake to consist of three block, meaning snake is three
      * grid units long.
      *
-     * Snake appears on the left center side moving in right direction. Class
+     * Snakes receives its coordinates through constructor. Class
      * uses public variables 'width' and 'height' from Class 'Ui' to know the
      * frames of the game grid
-     *
+     * 
+     * @Param x
+     * @Param y
      */
-    public Snake() {
+    public Snake(int x, int y) {
         this.width = Ui.width;
         this.height = Ui.height;
         this.snake = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
-            snake.add(new Block(0, height / 2));
+            snake.add(new Block(x, y));
         }
     }
 
@@ -46,11 +48,12 @@ public class Snake {
     }
 
     /**
-     * Starting form the tail of the snake the method sets the coordinates of
-     * each Block of the snake to the coordinates of the next Block. Finally the
-     * head of the snake moves in the given direction.
+     * Method for moving the snake. Starting form the tail of the snake the 
+     * method sets the coordinates of each Block of the snake to the coordinates
+     * of the next Block. Finally the head of the snake moves in the given 
+     * direction.
      * 
-     * @param direction direction of the snake
+     * @param direction direction the snake is moving
      */
     public void move(Direction direction) {
 

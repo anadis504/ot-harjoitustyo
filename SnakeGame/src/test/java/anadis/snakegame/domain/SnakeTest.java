@@ -5,11 +5,8 @@
  */
 package anadis.snakegame.domain;
 
-import java.util.List;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -48,10 +45,9 @@ public class SnakeTest {
 
     @Test
     public void snakeMovesCorrectly() {
-        snake.turn(Direction.RIGHT);
+        snake.move(Direction.RIGHT);
         assertEquals(1, snake.getSnake().get(0).getX());
-        snake.move();
-        assertTrue(snake.getSnake().get(0).equals(snake.getSnake().get(1)));
+        assertFalse(snake.getSnake().get(0).equals(snake.getSnake().get(1)));
     }
 
     @Test
@@ -61,39 +57,27 @@ public class SnakeTest {
     }
 
     @Test
-    public void testSetCoordinationForSnakeMoveAndExpectBlockInSamePlace() {
-        snake.getSnake().get(0).setX(10);
-        assertEquals(10, snake.getSnake().get(0).getX());
-        snake.getSnake().get(0).setY(5);
-        assertEquals(5, snake.getSnake().get(0).getY());
-        assertFalse(snake.getSnake().get(0).equals(snake.getSnake().get(1)));
-        snake.move();
-        assertTrue(snake.getSnake().get(0).equals(snake.getSnake().get(1)));
-    }
-
-    @Test
     public void snakesCoordinatesCorrectWhenSnakeMovesOutsideOfFrame() {
-        snake.turn(Direction.LEFT);
+        snake.move(Direction.LEFT);
         snake.border();
         assertEquals(19, snake.getSnake().get(0).getX());
-        snake.turn(Direction.RIGHT);
+        snake.move(Direction.RIGHT);
         snake.border();
         assertEquals(0, snake.getSnake().get(0).getX());
         snake.getSnake().get(0).setY(0);
-        snake.turn(Direction.UP);
+        snake.move(Direction.UP);
         snake.border();
         assertEquals(19, snake.getSnake().get(0).getY());
-        snake.turn(Direction.DOWN);
+        snake.move(Direction.DOWN);
         snake.border();
         assertEquals(0, snake.getSnake().get(0).getY());
     }
 
     @Test
     public void bodyCrashWhenSnakeTurnsOppositeDirection() {
-        snake.turn(Direction.DOWN);
+        snake.move(Direction.DOWN);
         assertFalse(snake.bodyCrash());
-        snake.move();
-        snake.turn(Direction.UP);
+        snake.move(Direction.UP);
         assertTrue(snake.bodyCrash());
     }
 }

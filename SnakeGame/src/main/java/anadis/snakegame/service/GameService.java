@@ -48,8 +48,7 @@ public class GameService {
 
     public void gameUnit() {
         
-        snake.move();
-        snake.turn(direction);
+        snake.move(direction);
         snake.border();
 
         if (snake.getSnake().get(0).equals(food)) {

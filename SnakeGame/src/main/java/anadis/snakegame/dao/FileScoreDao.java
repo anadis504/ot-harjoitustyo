@@ -8,12 +8,14 @@ package anadis.snakegame.dao;
 import anadis.snakegame.domain.Score;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
 /**
+ * Data Object Access class for storing game scores to permanent memory
  *
  * @author anadis
  */
@@ -22,7 +24,12 @@ public class FileScoreDao implements ScoreDao {
     private String file;
     private List<Score> scores;
 
-    public FileScoreDao(String file) {
+    /**
+     *
+     * @param file the file where data is stored
+     * @throws IOException
+     */
+    public FileScoreDao(String file) throws IOException {
         this.file = file;
         this.scores = new ArrayList<>();
 
@@ -33,14 +40,24 @@ public class FileScoreDao implements ScoreDao {
                 scores.add(new Score(parts[0], Integer.valueOf(parts[1])));
             }
         } catch (Exception ex) {
+            FileWriter writer = new FileWriter(new File(file));
+            writer.close();
         }
     }
 
+    /**
+     *
+     * @return List<Score> scores from memory
+     */
     @Override
     public List<Score> topTwenty() {
         return scores;
     }
 
+    /**
+     *
+     * @param newScore score to write to memory
+     */
     @Override
     public void add(Score newScore) {
         scores.add(newScore);

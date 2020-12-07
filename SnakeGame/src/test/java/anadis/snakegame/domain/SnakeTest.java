@@ -23,7 +23,7 @@ public class SnakeTest {
 
     @Before
     public void setUp() {
-        this.snake = new Snake();
+        this.snake = new Snake(0, 5);
     }
 
     @After
@@ -39,7 +39,7 @@ public class SnakeTest {
     public void snakeInCorrectCoordinatesWhenInitiated() {
         for (Block block : snake.getSnake()) {
             assertEquals(0, block.getX());
-            assertEquals(10, block.getY());
+            assertEquals(5, block.getY());
         }
     }
 

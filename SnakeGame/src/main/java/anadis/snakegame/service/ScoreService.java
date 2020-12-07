@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package anadis.snakegame.domain;
+package anadis.snakegame.service;
 
 import anadis.snakegame.dao.ScoreDao;
+import anadis.snakegame.domain.Score;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,18 +37,15 @@ public class ScoreService {
     
     public List<String[]> getScores() {
         ArrayList<String[]> scorelist = new ArrayList<>();
-        List<Score> scores = dao.topTwenty();
-        int rank = 1;
-        if (scores.isEmpty()) {
+        if (dao.topTwenty().isEmpty()) {
             String[] tbl = {"No hightscores yet"};
             scorelist.add(tbl);
         } else {
-            for (Score score : scores) {
+            for (Score score : dao.topTwenty()) {
                 String[] scoretbl = {score.getName(), Integer.toString(score.getScore())};
                 scorelist.add(scoretbl);
             }
         }
         return scorelist;
     }
-
 }

@@ -18,15 +18,15 @@ import java.io.File;
  */
 public class FileScoreDaoTest {
 
-    FileScoreDao scores;
-    File test = new File("testfilescores.txt");
+    FileScoreDao scoreDao;
+    File test = new File("testfilescoreDao.txt");
 
     public FileScoreDaoTest() {
     }
 
     @Before
     public void setUp() {
-        this.scores = new FileScoreDao("testfilescores.txt");
+        this.scoreDao = new FileScoreDao("testfilescoreDao.txt");
     }
 
     @After
@@ -36,16 +36,26 @@ public class FileScoreDaoTest {
 
     @Test
     public void testfileExistsAndNotEmptyAfterFirstAddition() {
-        scores.add(new Score("bob", 12));
-        assertTrue(!scores.topTwenty().isEmpty());
+        scoreDao.add(new Score("bob", 12));
+        assertFalse(scoreDao.topTwenty().isEmpty());
     }
 
     @Test
     public void highestScoreComesFirst() {
-        int highest = scores.topTwenty().get(0).getScore();
-        scores.add(new Score("alice", ++highest));
-        assertEquals("alice", scores.topTwenty().get(0).getName());
-        assertEquals(highest, scores.topTwenty().get(0).getScore());
+        int highest = scoreDao.topTwenty().get(0).getScore();
+        scoreDao.add(new Score("alice", ++highest));
+        assertEquals("alice", scoreDao.topTwenty().get(0).getName());
+        assertEquals(highest, scoreDao.topTwenty().get(0).getScore());
     }
-
+    
+    @Test
+    public void scorefileContainOnlyHighestTwentyscoreDao() {
+        for (int i = 1; i <= 22; i++) {
+            scoreDao.add(new Score("bob"+i, i));
+        }
+        assertEquals(20, scoreDao.topTwenty().size());
+        Score alice = new Score("alice", 1);
+        scoreDao.add(alice);
+        assertFalse(scoreDao.topTwenty().contains(alice));
+    }
 }

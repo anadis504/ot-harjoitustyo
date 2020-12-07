@@ -59,6 +59,7 @@
                 <configuration>
                     <excludes>
                         <exclude>anadis/snakegame/ui/*</exclude>
+                        <exclude>anadis/snakegame/scenes/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>

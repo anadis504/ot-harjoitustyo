@@ -5,7 +5,7 @@
  */
 package anadis.snakegame.scenes;
 
-import anadis.snakegame.domain.ScoreService;
+import anadis.snakegame.service.ScoreService;
 import anadis.snakegame.ui.Ui;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

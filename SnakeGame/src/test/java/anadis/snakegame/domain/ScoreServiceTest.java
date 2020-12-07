@@ -5,56 +5,63 @@
  */
 package anadis.snakegame.domain;
 
+import anadis.snakegame.service.ScoreService;
 import anadis.snakegame.dao.FileScoreDao;
 import anadis.snakegame.dao.ScoreDao;
+import java.util.ArrayList;
 import org.junit.After;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 import static org.mockito.Mockito.*;
-
 
 /**
  *
  * @author anadis
  */
 public class ScoreServiceTest {
-    
+
     ScoreDao dao;
     ScoreService scoreService;
-    
+
     public ScoreServiceTest() {
     }
-    
+
     @Before
     public void setUp() {
         this.dao = mock(FileScoreDao.class);
         this.scoreService = new ScoreService(dao);
     }
-    
+
     @After
     public void tearDown() {
     }
 
-//    @Test
-//    public void testingCallAddingMethod() {
-//        when(dao.newHighscore(anyInt())).thenReturn(true);
-//        scoreService.addScore("bob", 12);
-//        verify(dao, times(1)).newHighscore(12);
-//    }
-//    
-//    @Test
-//    public void serviceDoesNotAddWhenScoreTooLow() {
-//        when(dao.newHighscore(anyInt())).thenReturn(false);
-//        scoreService.addScore("bob", 11);
-//        verify(dao, times(0)).add(anyObject());
-//    }
+    @Test
+    public void whenDaoIsEmptyServiceReturnAppropriateMessage() {
+        when(dao.topTwenty()).thenReturn(new ArrayList<Score>());
+        assertTrue(scoreService.getScores().get(0)[0].equals("No hightscores yet"));
+        verify(dao, times(1)).topTwenty();
+    }
+
+    @Test
+    public void whenDaoIsEmptyAnyNewScoreIsAddedToDao() {
+        when(dao.topTwenty()).thenReturn(new ArrayList<Score>());
+        scoreService.addScore("bob", 12);
+        verify(dao, times(1)).topTwenty();
+        verify(dao).add(anyObject());
+    }
+
+    @Test
+    public void tooLowScoreIsNotAddedToDao() {
+        ArrayList<Score> scorelist = new ArrayList<>();
+        for (int i = 2; i <= 22; i++) {
+            scorelist.add(new Score("bob" + i, i));
+        }
+        when(dao.topTwenty()).thenReturn(scorelist);
+        scoreService.addScore("bob", 1);
+        verify(dao, times(0)).add(anyObject());
+    }
     
-//    @Test
-//    public void returnsLabelWhenAskedForScores() {
-//        List<Score> scores = new ArrayList<>();
-//        scores.add(new Score("bob", 12));
-//        when(dao.topTwenty()).thenReturn(scores);
-//        scoreService.getScores();
-//        verify(dao, times(1)).topTwenty();
-//    }
+    
 }

@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package anadis.snakegame.domain;
+package anadis.snakegame.service;
 
+import anadis.snakegame.domain.Block;
+import anadis.snakegame.domain.Direction;
+import anadis.snakegame.domain.Food;
+import anadis.snakegame.domain.Snake;
 import anadis.snakegame.ui.Ui;
 import java.util.List;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 
 /**
  *
@@ -21,7 +23,6 @@ public class GameService {
     private Food food;
     private Direction direction;
     private boolean gameOver;
-    private GraphicsContext context;
 
     public GameService() {
         this.height = Ui.height * Ui.blocksize;
@@ -75,13 +76,6 @@ public class GameService {
     public List<Block> getSnake() {
         return snake.getSnake();        
     }
-    
-    public void paintSnake() {
-        for (Block block : snake.getSnake()) {
-            context.setFill(Color.DARKSEAGREEN);
-            context.fillRect(block.getX() * Ui.blocksize, block.getY() * Ui.blocksize, Ui.blocksize, Ui.blocksize);
-        }
-    }
 
     public void eat() {
         snake.grow();
@@ -89,12 +83,7 @@ public class GameService {
         food.relocate();
     }
 
-    public void paintBackground() {
-        context.setFill(Color.BEIGE);
-        context.fillRect(0, 0, width, height);
-
-        context.setFill(Color.DEEPSKYBLUE);
-        context.fillText("Score: " + score, 10, 30);
+    public Block getFood() {
+        return this.food;
     }
-
 }

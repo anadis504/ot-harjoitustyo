@@ -5,7 +5,6 @@
  */
 package anadis.snakegame.domain;
 
-import anadis.snakegame.service.ScoreService;
 import anadis.snakegame.dao.FileScoreDao;
 import anadis.snakegame.dao.ScoreDao;
 import java.util.ArrayList;

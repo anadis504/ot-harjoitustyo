@@ -5,7 +5,6 @@
  */
 package anadis.snakegame.domain;
 
-import anadis.snakegame.service.GameService;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import org.junit.After;

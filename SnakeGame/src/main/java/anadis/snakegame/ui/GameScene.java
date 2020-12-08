@@ -5,8 +5,8 @@
  */
 package anadis.snakegame.ui;
 
-import anadis.snakegame.service.GameService;
-import anadis.snakegame.service.ScoreService;
+import anadis.snakegame.domain.GameService;
+import anadis.snakegame.domain.ScoreService;
 import anadis.snakegame.domain.*;
 import anadis.snakegame.ui.Ui;
 import javafx.animation.AnimationTimer;

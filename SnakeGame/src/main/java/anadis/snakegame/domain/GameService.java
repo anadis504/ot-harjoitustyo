@@ -3,12 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package anadis.snakegame.service;
+package anadis.snakegame.domain;
 
-import anadis.snakegame.domain.Block;
-import anadis.snakegame.domain.Direction;
-import anadis.snakegame.domain.Food;
-import anadis.snakegame.domain.Snake;
 import anadis.snakegame.ui.Ui;
 import java.util.List;
 

@@ -48,7 +48,7 @@ public class GameScene {
         root.setPrefSize(width, height);
         Canvas canvas = new Canvas(width, height);
         GraphicsContext context = canvas.getGraphicsContext2D();
-        
+
         this.initNewScoreForm();
         root.getChildren().addAll(canvas, Ui.back, inputForm);
 
@@ -76,7 +76,7 @@ public class GameScene {
     public void timeInstance(GraphicsContext context) {
         boolean gameOver = gameService.getGameOver();
         Ui.back.setVisible(gameOver);
-        
+
         if (gameOver) {
             paintGameOver(context);
             timer.stop();
@@ -86,16 +86,16 @@ public class GameScene {
         paintBackground(context);
         paintFood(context);
         paintSnake(context);
-       
+
     }
-    
+
     public void paintGameOver(GraphicsContext context) {
         context.setFill(Color.RED);
         context.fillText("GAME OVER\nYOUR SCORE  " + gameService.getScore(), width / 3, height / 2);
         this.inputForm.setVisible(scoreService.isTopTwenty(gameService.getScore()));
         Ui.back.setVisible(!scoreService.isTopTwenty(gameService.getScore()));
     }
-    
+
     public void paintBackground(GraphicsContext context) {
         context.setFill(Color.BEIGE);
         context.fillRect(0, 0, width, height);
@@ -103,41 +103,41 @@ public class GameScene {
         context.setFill(Color.DEEPSKYBLUE);
         context.fillText("Score: " + gameService.getScore(), 10, 30);
     }
-    
+
     public void paintFood(GraphicsContext context) {
         gameService.foodColor();
         Color color = Color.web(gameService.foodColor());
         context.setFill(color);
         context.fillOval(gameService.foodX(), gameService.foodY(), Ui.blocksize, Ui.blocksize);
     }
-    
+
     public void paintSnake(GraphicsContext context) {
         for (Block block : gameService.getSnake()) {
             context.setFill(Color.DARKSEAGREEN);
             context.fillRect(block.getX() * Ui.blocksize, block.getY() * Ui.blocksize, Ui.blocksize, Ui.blocksize);
         }
     }
-    
+
     public void initNewScoreForm() {
         this.inputForm = new VBox();
         inputForm.setAlignment(Pos.TOP_CENTER);
         inputForm.setSpacing(10);
-        inputForm.setPadding(new Insets(50,100,50,100));
+        inputForm.setPadding(new Insets(50, 100, 50, 100));
         Label namelabel = new Label("your name");
         TextField inputField = new TextField();
         Button submit = new Button("save");
-        
+
         submit.setOnAction(e -> {
             String nickname = inputField.getText();
             System.out.println(inputField.getText());
             scoreService.addScore(nickname, gameService.getScore());
             Ui.back.fire();
         });
-        
+
         inputForm.getChildren().addAll(namelabel, inputField, submit);
         inputForm.setVisible(false);
     }
-    
+
     public GameService getService() {
         return this.gameService;
     }

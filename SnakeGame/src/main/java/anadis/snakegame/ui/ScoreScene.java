@@ -6,7 +6,6 @@
 package anadis.snakegame.ui;
 
 import anadis.snakegame.service.ScoreService;
-import anadis.snakegame.ui.Ui;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -19,28 +18,28 @@ import javafx.scene.layout.GridPane;
  * @author anadis
  */
 public class ScoreScene {
-    
+
     private ScoreService scoreService;
-    
+
     public ScoreScene(ScoreService service) {
         this.scoreService = service;
     }
-    
+
     public Parent getScene(Button backButton) {
-        
+
         GridPane pane = new GridPane();
-        
+
         Label tittle = new Label("Top Twenty Scores");
-        
+
         pane.setAlignment(Pos.TOP_CENTER);
         pane.setVgap(5);
         pane.setHgap(5);
         pane.setPadding(new Insets(10, 10, 10, 10));
-        
+
         pane.add(tittle, 0, 0);
         int i = 2;
         for (String[] score : scoreService.getScores()) {
-            pane.add(new Label(Integer.toString(i-1)), 0, i);
+            pane.add(new Label(Integer.toString(i - 1)), 0, i);
             pane.add(new Label(score[0]), 1, i);
             pane.add(new Label(" : "), 2, i);
             pane.add(new Label(score[1]), 3, i);
@@ -48,7 +47,7 @@ public class ScoreScene {
         }
         Ui.back.setVisible(true);
         pane.add(backButton, 2, 0);
-        
+
         return pane;
     }
 }

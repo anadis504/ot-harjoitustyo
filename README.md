@@ -14,6 +14,8 @@ The classic snake-game desctop application: a single-player computer game where 
 
 [arkkitehtuurikuvaus](https://github.com/anadis504/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
 
+[käyttöohje](https://github.com/anadis504/ot-harjoitustyo/blob/master/dokumentaatio/k%C3%A4ytt%C3%B6ohje.md)
+
 ## Komentorivitoiminnot
 
 ### Ohjelman suorittaminen

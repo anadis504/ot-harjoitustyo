@@ -29,4 +29,6 @@ Question: Should I put all the ui code into one class like OtmTodoApp program? I
 
 ## Application logic
 
-<img scr="https://github.com/anadis504/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/package.png">
+<img src="https://github.com/anadis504/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/package.png">
+
+

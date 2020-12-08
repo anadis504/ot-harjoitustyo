@@ -25,7 +25,7 @@ public class FileScoreDaoTest {
     }
 
     @Before
-    public void setUp() {
+    public void setUp() throws Exception {
         this.scoreDao = new FileScoreDao("testfilescoreDao.txt");
     }
 

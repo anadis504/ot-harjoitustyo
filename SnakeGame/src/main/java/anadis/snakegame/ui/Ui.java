@@ -31,16 +31,12 @@ public class Ui extends Application {
     private ScoreService scoreService;
     public static Button back;
 
-    public Ui() {
+    @Override
+    public void init() throws Exception {
         this.scoreService = new ScoreService(new FileScoreDao("scores.txt"));
         this.viewScores = new ScoreScene(scoreService);
         this.gameScene = new GameScene(scoreService);
         this.back = new Button("back to menu");
-    }
-
-    @Override
-    public void init() throws Exception {
-
     }
 
     @Override
@@ -66,7 +62,7 @@ public class Ui extends Application {
         backFromScores.setOnAction(e -> {
             borderPane.setCenter(selection);
         });
-        
+
         scores.setOnAction((event) -> {
             borderPane.setCenter(viewScores.getScene(backFromScores));
         });

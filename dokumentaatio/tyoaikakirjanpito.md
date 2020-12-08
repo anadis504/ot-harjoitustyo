@@ -22,4 +22,6 @@
 | 6.12 | 2 | Service-luoklien refaktorointi: käyttöliitymän ja sovelluslogiikan erottelu |
 | 6.12 | 2 | back-napin bugikorjaaminen |
 | 6.12 | 2 | pisteiden lisäämistoiminnallisuuden ohjelmointi ja GUI muokkaminen |
-| yht | 66.5 |
+| 7.12 | 6 | testaus, refaktorointi, JavaDoc |
+| 8.12 | 4 | JavaDoc, dokumentaatio |
+| yht | 76.5 |

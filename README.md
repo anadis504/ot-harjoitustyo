@@ -12,7 +12,7 @@ The classic snake-game desctop application: a single-player computer game where 
 
 [työaikakirjanpito](https://github.com/anadis504/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md)
 
-[arkkitehtuuri.md](https://github.com/anadis504/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
+[arkkitehtuurikuvaus](https://github.com/anadis504/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
 
 ## Komentorivitoiminnot
 
@@ -59,3 +59,13 @@ Tiedostoon [checkstyle.xml](https://github.com/anadis504/ot-harjoitustyo/blob/ma
 ```
 
 Mahdolliset virheilmoitukset selviävät avaamalla selaimella tiedosto _target/site/checkstyle.html_
+
+### JavaDoc
+
+JavaDoc on generoitavissa komennolla 
+
+```
+mvn javadoc:javadoc
+```
+
+Generoitu JavaDoc löytyy hakemistosta _target/site/apidocs/_

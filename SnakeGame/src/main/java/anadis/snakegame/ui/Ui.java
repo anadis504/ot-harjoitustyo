@@ -8,6 +8,8 @@ package anadis.snakegame.ui;
 import anadis.snakegame.dao.FileScoreDao;
 import anadis.snakegame.domain.Direction;
 import anadis.snakegame.domain.ScoreService;
+import java.io.FileInputStream;
+import java.util.Properties;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -30,17 +32,25 @@ public class Ui extends Application {
     private GameScene gameScene;
     private ScoreService scoreService;
     public static Button back;
+    private Scene mainSelection;
 
     @Override
     public void init() throws Exception {
-        this.scoreService = new ScoreService(new FileScoreDao("scores.txt"));
+        Properties properties = new Properties();
+
+        properties.load(new FileInputStream("config.properties"));
+
+        String scoreFile = properties.getProperty("scoreFile");
+        FileScoreDao scoreDao = new FileScoreDao(scoreFile);
+        this.scoreService = new ScoreService(scoreDao);
+        
         this.viewScores = new ScoreScene(scoreService);
         this.gameScene = new GameScene(scoreService);
         this.back = new Button("back to menu");
     }
 
     @Override
-    public void start(Stage window) {
+    public void start(Stage primaryStage) {
 
         BorderPane borderPane = new BorderPane();
 
@@ -55,42 +65,28 @@ public class Ui extends Application {
         selection.getChildren().addAll(newGame, scores);
         borderPane.setCenter(selection);
 
-        back.setOnAction(e -> {
-            borderPane.setCenter(selection);
-        });
-
+        mainSelection = new Scene(borderPane, width * blocksize, height * blocksize);
         backFromScores.setOnAction(e -> {
-            borderPane.setCenter(selection);
+            primaryStage.setScene(mainSelection);
         });
 
         scores.setOnAction((event) -> {
-            borderPane.setCenter(viewScores.getScene(backFromScores));
+            primaryStage.setScene(viewScores.getScene());
         });
 
         newGame.setOnAction(e -> {
-            borderPane.setCenter(gameScene.getScene());
+            primaryStage.setScene(gameScene.getScene());
         });
 
-        Scene scene = new Scene(borderPane, width * blocksize, height * blocksize);
+//        Scene scene = new Scene(borderPane, width * blocksize, height * blocksize);
 
-        scene.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.UP) {
-                gameScene.getService().setDirection(Direction.UP);
-            }
-            if (event.getCode() == KeyCode.RIGHT) {
-                gameScene.getService().setDirection(Direction.RIGHT);
-            }
-            if (event.getCode() == KeyCode.DOWN) {
-                gameScene.getService().setDirection(Direction.DOWN);
-            }
-            if (event.getCode() == KeyCode.LEFT) {
-                gameScene.getService().setDirection(Direction.LEFT);
-            }
+        back.setOnAction(e -> {
+            primaryStage.setScene(mainSelection);
         });
 
-        window.setScene(scene);
-        window.setTitle("SNAKE GAME");
-        window.show();
+        primaryStage.setScene(mainSelection);
+        primaryStage.setTitle("SNAKE GAME");
+        primaryStage.show();
 
     }
 

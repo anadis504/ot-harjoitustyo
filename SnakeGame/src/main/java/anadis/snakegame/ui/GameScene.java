@@ -8,15 +8,16 @@ package anadis.snakegame.ui;
 import anadis.snakegame.domain.GameService;
 import anadis.snakegame.domain.ScoreService;
 import anadis.snakegame.domain.*;
-import anadis.snakegame.ui.Ui;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
@@ -41,7 +42,7 @@ public class GameScene {
 
     }
 
-    public Pane getScene() {
+    public Scene getScene() {
 
         this.gameService = new GameService();
         GridPane root = new GridPane();
@@ -70,7 +71,23 @@ public class GameScene {
         };
         timer.start();
 
-        return root;
+        Scene gameScene = new Scene(root);
+        gameScene.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.UP) {
+                gameService.setDirection(Direction.UP);
+            }
+            if (event.getCode() == KeyCode.RIGHT) {
+                gameService.setDirection(Direction.RIGHT);
+            }
+            if (event.getCode() == KeyCode.DOWN) {
+                gameService.setDirection(Direction.DOWN);
+            }
+            if (event.getCode() == KeyCode.LEFT) {
+                gameService.setDirection(Direction.LEFT);
+            }
+        });
+
+        return gameScene;
     }
 
     public void timeInstance(GraphicsContext context) {
@@ -140,12 +157,6 @@ public class GameScene {
 
     public GameService getService() {
         return this.gameService;
-    }
-
-    public void stopTimer() {
-        if (this.timer != null) {
-            this.timer.stop();
-        }
     }
 
 }

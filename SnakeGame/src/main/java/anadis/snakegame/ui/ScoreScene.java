@@ -9,8 +9,10 @@ import anadis.snakegame.domain.ScoreService;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
 /**
@@ -25,8 +27,9 @@ public class ScoreScene {
         this.scoreService = service;
     }
 
-    public Parent getScene(Button backButton) {
+    public Scene getScene() {
 
+        BorderPane rootPane = new BorderPane();
         GridPane pane = new GridPane();
 
         Label tittle = new Label("Top Twenty Scores");
@@ -45,9 +48,15 @@ public class ScoreScene {
             pane.add(new Label(score[1]), 3, i);
             i++;
         }
-        Ui.back.setVisible(true);
-        pane.add(backButton, 2, 0);
+//        Ui.back.setVisible(true);
+        Button back = new Button("back to menu");
+        back.setOnAction(e -> {
+            Ui.back.fire();
+        });
+        pane.add(back, 2, 0);
 
-        return pane;
+        rootPane.setCenter(pane);
+        Scene scoreScene = new Scene(rootPane, Ui.width*Ui.blocksize, Ui.height*Ui.blocksize);
+        return scoreScene;
     }
 }

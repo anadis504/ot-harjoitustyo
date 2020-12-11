@@ -23,16 +23,18 @@ public class GameService {
     private Food food;
     private Direction direction;
     private boolean gameOver;
+    private int level;
 
     /**
      * 
      */
-    public GameService() {
+    public GameService(int level) {
         this.snake = new Snake(0, Ui.height / 2);
         this.food = new Food(5, 5);
         this.direction = Direction.RIGHT;
         this.gameOver = false;
         this.score = 0;
+        this.level = level;
     }
 
     /**
@@ -52,6 +54,9 @@ public class GameService {
         return this.score;
     }
     
+    public int getLevel() {
+        return this.level;
+    }
     /**
      *
      * @return true if Game Over, otherwise false

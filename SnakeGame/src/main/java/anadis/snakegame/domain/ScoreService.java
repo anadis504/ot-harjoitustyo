@@ -9,6 +9,7 @@ import anadis.snakegame.dao.ScoreDao;
 import anadis.snakegame.domain.Score;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Class that provides an interface between data storing and user interface. 
@@ -35,9 +36,9 @@ public class ScoreService {
      * @param name of player
      * @param score amount of points
      */
-    public void addScore(String name, int score) {
+    public void addScore(String name, int score, int level) {
         if (isTopTwenty(score)) {
-            dao.add(new Score(name, score));
+            dao.add(new Score(name, score, level));
         }
     }
 
@@ -58,17 +59,25 @@ public class ScoreService {
      *
      * @return list of the scores in the memory
      */
-    public List<String[]> getScores() {
+    public List<String[]> getScores(int level) {
+        List<Score> scores = dao.topTwenty()
+                    .stream().
+                    filter((score) -> level==score.getLevel())
+                    .collect(Collectors.toList());   
+        
+        System.out.println(scores.isEmpty());
         ArrayList<String[]> scorelist = new ArrayList<>();
-        if (dao.topTwenty().isEmpty()) {
-            String[] tbl = {"No hightscores yet"};
-            scorelist.add(tbl);
-        } else {
-            for (Score score : dao.topTwenty()) {
+//        if (scores.isEmpty()) {
+//            System.out.println("shits empty");
+//            String[] tbl = {"No hightscores yet"};
+//            scorelist.add(tbl);
+//        } else {
+//            
+            for (Score score : scores) {
                 String[] scoretbl = {score.getName(), Integer.toString(score.getScore())};
                 scorelist.add(scoretbl);
             }
-        }
+        
         return scorelist;
     }
 }

@@ -37,7 +37,7 @@ public class FileScoreDao implements ScoreDao {
             Scanner scanner = new Scanner(new File(file));
             while (scanner.hasNextLine()) {
                 String[] parts = scanner.nextLine().split(";");
-                scores.add(new Score(parts[0], Integer.valueOf(parts[1])));
+                scores.add(new Score(parts[0], Integer.valueOf(parts[1]), Integer.valueOf(parts[2])));
             }
         } catch (Exception ex) {
             FileWriter writer = new FileWriter(new File(file));
@@ -69,7 +69,8 @@ public class FileScoreDao implements ScoreDao {
         try {
             FileWriter writer = new FileWriter(file);
             for (Score score : scores) {
-                String line = score.getName() + ";" + score.getScore() + "\n";
+                String line = score.getName() + ";" + score.getScore() 
+                        + ";" + score.getLevel() + "\n";
                 writer.write(line);
             }
             writer.close();

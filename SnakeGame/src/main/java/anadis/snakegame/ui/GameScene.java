@@ -27,8 +27,7 @@ import javafx.scene.paint.Color;
  */
 public class GameScene {
 
-    private int width;
-    private int height;
+    private int width, height, level;
     private GameService gameService;
     private ScoreService scoreService;
     private AnimationTimer timer;
@@ -39,12 +38,13 @@ public class GameScene {
         this.scoreService = service;
         this.width = Ui.width * Ui.blocksize;
         this.height = Ui.height * Ui.blocksize;
+        this.level = 0;
 
     }
 
-    public Scene getScene() {
+    public Scene getScene(int level) {
 
-        this.gameService = new GameService();
+        this.gameService = new GameService(level);
         GridPane root = new GridPane();
         root.setPrefSize(width, height);
         Canvas canvas = new Canvas(width, height);
@@ -147,7 +147,7 @@ public class GameScene {
         submit.setOnAction(e -> {
             String nickname = inputField.getText();
             System.out.println(inputField.getText());
-            scoreService.addScore(nickname, gameService.getScore());
+            scoreService.addScore(nickname, gameService.getScore(), gameService.getLevel());
             Ui.back.fire();
         });
 

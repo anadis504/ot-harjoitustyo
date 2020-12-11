@@ -14,15 +14,18 @@ public class Score implements Comparable<Score> {
     
     private String nickname;
     private int score;
+    private int level;
     
     /**
      *
      * @param name String name
-     * @param score int amount of points
+     * @param points
+     * @param level
      */
-    public Score(String name, int score) {
+    public Score(String name, int points, int level) {
         this.nickname = name;
-        this.score = score;
+        this.score = points;
+        this.level = level;
     }
     
     /**
@@ -41,10 +44,14 @@ public class Score implements Comparable<Score> {
         return this.score;
     }
 
+    public int getLevel() {
+        return this.level;
+    }
+    
     /**
      * Method compares two scores by the amount of points
      * 
-     * @param Score other score to be compared to
+     * @param other Score to compare to
      * @return int point-difference of the two scores
      */
     @Override

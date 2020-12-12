@@ -20,6 +20,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 /**
  *
@@ -27,7 +28,7 @@ import javafx.scene.paint.Color;
  */
 public class GameScene {
 
-    private int width, height, level;
+    private int width, height;
     private GameService gameService;
     private ScoreService scoreService;
     private AnimationTimer timer;
@@ -38,7 +39,6 @@ public class GameScene {
         this.scoreService = service;
         this.width = Ui.width * Ui.blocksize;
         this.height = Ui.height * Ui.blocksize;
-        this.level = 0;
 
     }
 
@@ -107,15 +107,30 @@ public class GameScene {
     }
 
     public void paintGameOver(GraphicsContext context) {
+        int rank = scoreService.generateRank(gameService.getScore(), gameService.getLevel());
         context.setFill(Color.RED);
-        context.fillText("GAME OVER\nYOUR SCORE  " + gameService.getScore(), width / 3, height / 2);
-        this.inputForm.setVisible(scoreService.isTopTwenty(gameService.getScore()));
-        Ui.back.setVisible(!scoreService.isTopTwenty(gameService.getScore()));
+        context.setFont(Font.font("Arial", 17));
+        if (rank <= 20) {
+            context.fillText("GAME OVER\nNEW HIGHSCORE!"
+                    + "\nYOUR RANKING:  " + rank, width / 3, height / 2);
+            this.inputForm.setVisible(true);
+            Ui.back.setVisible(false);
+        } else if (rank > 20) {
+            context.fillText("GAME OVER\nYOUR SCORE  " + gameService.getScore(),
+                    width / 3, height / 2);
+            Ui.back.setVisible(true);
+        }
+
     }
 
     public void paintBackground(GraphicsContext context) {
         context.setFill(Color.BEIGE);
         context.fillRect(0, 0, width, height);
+        if (gameService.getLevel() == 2) {
+            context.setStroke(Color.SADDLEBROWN);
+            context.setLineWidth(3);
+            context.strokeRect(0, 0, width, height);
+        }
 
         context.setFill(Color.DEEPSKYBLUE);
         context.fillText("Score: " + gameService.getScore(), 10, 30);
@@ -153,10 +168,6 @@ public class GameScene {
 
         inputForm.getChildren().addAll(namelabel, inputField, submit);
         inputForm.setVisible(false);
-    }
-
-    public GameService getService() {
-        return this.gameService;
     }
 
 }

@@ -9,6 +9,7 @@ import anadis.snakegame.domain.Score;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -37,7 +38,8 @@ public class FileScoreDao implements ScoreDao {
             Scanner scanner = new Scanner(new File(file));
             while (scanner.hasNextLine()) {
                 String[] parts = scanner.nextLine().split(";");
-                scores.add(new Score(parts[0], Integer.valueOf(parts[1]), Integer.valueOf(parts[2])));
+                scores.add(new Score(parts[0], Integer.valueOf(parts[1]), 
+                        Integer.valueOf(parts[2]), LocalDateTime.parse(parts[3])));
             }
         } catch (Exception ex) {
             FileWriter writer = new FileWriter(new File(file));
@@ -50,7 +52,7 @@ public class FileScoreDao implements ScoreDao {
      * @return List<Score> scores from memory
      */
     @Override
-    public List<Score> topTwenty() {
+    public List<Score> getAll() {
         return scores;
     }
 
@@ -62,15 +64,13 @@ public class FileScoreDao implements ScoreDao {
     public void add(Score newScore) {
         scores.add(newScore);
         Collections.sort(scores);
-        while (scores.size() > 20) {
-            scores.remove(20);
-        }
 
         try {
             FileWriter writer = new FileWriter(file);
             for (Score score : scores) {
-                String line = score.getName() + ";" + score.getScore() 
-                        + ";" + score.getLevel() + "\n";
+                String line = score.getName() + ";" + score.getScore()
+                        + ";" + score.getLevel() + ";" + score.getTimestamp() 
+                        + "\n";
                 writer.write(line);
             }
             writer.close();

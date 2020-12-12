@@ -13,6 +13,6 @@ import java.util.List;
  * @author anadis
  */
 public interface ScoreDao {
-    List<Score> topTwenty();
+    List<Score> getAll();
     void add(Score score);
 }

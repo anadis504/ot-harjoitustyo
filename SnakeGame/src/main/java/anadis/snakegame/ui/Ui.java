@@ -6,7 +6,6 @@
 package anadis.snakegame.ui;
 
 import anadis.snakegame.dao.FileScoreDao;
-import anadis.snakegame.domain.Direction;
 import anadis.snakegame.domain.ScoreService;
 import java.io.FileInputStream;
 import java.util.HashMap;
@@ -16,7 +15,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -36,11 +34,11 @@ public class Ui extends Application {
     private ScoreService scoreService;
     public static Button back;
     private Scene mainSelection;
-    private Scene gameLevelSelection;
-    private Scene scoreLevelSelection;
+    private Scene LevelSelection;
     private int levels;
     private HashMap<Integer, Button> levelButtons;
-    private HashMap<Integer, Button> scoreLevels;
+    private int routing;
+//    private HashMap<Integer, Button> scoreLevels;
 
     @Override
     public void init() throws Exception {
@@ -57,11 +55,10 @@ public class Ui extends Application {
         this.back = new Button("back to menu");
         this.levels = 2;
 
+        this.routing = 0;
         this.levelButtons = new HashMap<>();
-        this.scoreLevels = new HashMap<>();
         for (int i = 1; i <= levels; i++) {
             levelButtons.put(i, new Button("level " + i));
-            scoreLevels.put(i, new Button("level " + i));
         }
 
     }
@@ -88,39 +85,41 @@ public class Ui extends Application {
         });
 
         scores.setOnAction((event) -> {
-            primaryStage.setScene(scoreLevelSelection);
+            routing = 2;
+            primaryStage.setScene(LevelSelection);
         });
 
         newGame.setOnAction(e -> {
-            primaryStage.setScene(gameLevelSelection);
+            routing = 1;
+            primaryStage.setScene(LevelSelection);
         });
 
         back.setOnAction(e -> {
             primaryStage.setScene(mainSelection);
         });
 
-        // level selection
-        GridPane gameLevelPane = new GridPane();
-        gameLevelPane.setAlignment(Pos.CENTER);
+        // level selection scene
+        GridPane levelPane = new GridPane();
+        levelPane.setAlignment(Pos.TOP_LEFT);
+        levelPane.setVgap(width);
+        levelPane.setHgap(height);
         levelButtons.forEach((level, button) -> {
             button.setOnAction(e -> {
-                primaryStage.setScene(gameScene.getScene(level));
+                if (routing == 1) {
+                    primaryStage.setScene(gameScene.getScene(level));
+                } else if (routing == 2) {
+                    primaryStage.setScene(viewScores.getScene(level));
+                }
             });
-            gameLevelPane.add(button, level, level);
+            levelPane.add(button, level, 1);
         });
-        gameLevelSelection = new Scene(gameLevelPane, 500, 500);
+        Button backButton = new Button("back");
+        levelPane.add(backButton, 0, 0);
+        backButton.setOnAction(a -> {
+            primaryStage.setScene(mainSelection);
+        });
+        LevelSelection = new Scene(levelPane, 500, 500);
 
-        GridPane scoreLevelPane = new GridPane();
-        scoreLevelPane.setAlignment(Pos.CENTER);
-        scoreLevels.forEach((level, button) -> {
-            button.setOnAction(e -> {
-                primaryStage.setScene(this.viewScores.getScene(level));
-            });
-            scoreLevelPane.add(button, level, level);
-        });
-        scoreLevelSelection = new Scene(scoreLevelPane,500,500);
-        
-        
         primaryStage.setScene(mainSelection);
         primaryStage.setTitle("SNAKE GAME");
         primaryStage.show();

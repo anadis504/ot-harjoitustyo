@@ -39,12 +39,12 @@ public class ScoreScene {
         pane.setHgap(5);
         pane.setPadding(new Insets(10, 10, 10, 10));
 
-        pane.add(tittle, 0, 0);
+        pane.add(tittle, 1, 0);
         int i = 2;
         for (String[] score : scoreService.getScores(level)) {
-            pane.add(new Label(Integer.toString(i - 1)), 0, i);
+            pane.add(new Label(Integer.toString(i - 1)+ " "), 0, i);
             pane.add(new Label(score[0]), 1, i);
-            pane.add(new Label(" : "), 2, i);
+            pane.add(new Label("  :  "), 2, i);
             pane.add(new Label(score[1]), 3, i);
             i++;
         }
@@ -53,9 +53,8 @@ public class ScoreScene {
         back.setOnAction(e -> {
             Ui.back.fire();
         });
-        pane.add(back, 2, 0);
+        pane.add(back, 3, 0);
 
-        System.out.println("got here");
         rootPane.setCenter(pane);
         Scene scoreScene = new Scene(rootPane, Ui.width*Ui.blocksize, Ui.height*Ui.blocksize);
         return scoreScene;

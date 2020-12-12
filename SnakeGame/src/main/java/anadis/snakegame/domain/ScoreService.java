@@ -6,15 +6,15 @@
 package anadis.snakegame.domain;
 
 import anadis.snakegame.dao.ScoreDao;
-import anadis.snakegame.domain.Score;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 /**
- * Class that provides an interface between data storing and user interface. 
+ * Class that provides an interface between data storing and user interface.
  * Manages data storing logic.
- * 
+ *
  * @author anadis
  */
 public class ScoreService {
@@ -23,7 +23,7 @@ public class ScoreService {
 
     /**
      * Receives ScoreDao object for storing data in constructor.
-     * 
+     *
      * @param dao ScoreDao
      */
     public ScoreService(ScoreDao dao) {
@@ -32,52 +32,58 @@ public class ScoreService {
 
     /**
      * Method for adding new "name : score" pair to permanent memory.
-     * 
+     *
      * @param name of player
      * @param score amount of points
      */
     public void addScore(String name, int score, int level) {
-        if (isTopTwenty(score)) {
-            dao.add(new Score(name, score, level));
+        if (generateRank(score, level) <= 20) {
+            Score newScore = new Score(name, score, level,java.time.LocalDateTime.now());
+//            newScore.setTimestamp(java.time.LocalDateTime.now());
+            dao.add(newScore);
         }
     }
 
-    /**
-     * Checks if the amount of points belongs to the top twenty scores in memory
-     *
-     * @param points
-     * @return true if the points belong to the top twenty, otherwise false
-     */
-    public boolean isTopTwenty(int points) {
-        if (dao.topTwenty().size() < 20 || points > dao.topTwenty().get(19).getScore()) {
-            return true;
-        }
-        return false;
+    public int generateRank(int points, int level) {
+        List<Score> scores = getScoresForLevel(level);
+        long rank = scores
+                .stream()
+                .filter(score -> score.getScore() >= points)
+                .count();
+        System.out.println(rank);
+        return (int) rank + 1;
     }
-    
+
     /**
      *
+     * @param level
      * @return list of the scores in the memory
      */
     public List<String[]> getScores(int level) {
-        List<Score> scores = dao.topTwenty()
-                    .stream().
-                    filter((score) -> level==score.getLevel())
-                    .collect(Collectors.toList());   
-        
-        System.out.println(scores.isEmpty());
+
         ArrayList<String[]> scorelist = new ArrayList<>();
-//        if (scores.isEmpty()) {
-//            System.out.println("shits empty");
-//            String[] tbl = {"No hightscores yet"};
-//            scorelist.add(tbl);
-//        } else {
-//            
-            for (Score score : scores) {
-                String[] scoretbl = {score.getName(), Integer.toString(score.getScore())};
-                scorelist.add(scoretbl);
-            }
-        
+
+        for (Score score : getScoresForLevel(level)) {
+            String[] scoretbl = {score.getName(), Integer.toString(score.getScore())};
+            scorelist.add(scoretbl);
+        }
+
         return scorelist;
+    }
+
+    public List<Score> getScoresForLevel(int level) {
+        List<Score> scores = dao.getAll()
+                .stream()
+                .filter((score) -> level == score.getLevel())
+                .collect(Collectors.toList());
+        
+        while (scores.size() > 20) {
+            scores.remove(20);
+        }
+        for (Score s : scores) {
+            System.out.println(s.getScore());
+        }
+
+        return scores;
     }
 }

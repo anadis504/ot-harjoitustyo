@@ -84,6 +84,10 @@ public class Snake {
         }
     }
 
+    public boolean hitFrame() {
+        return snake.get(0).getX() < 0 || snake.get(0).getX() >= width 
+                || snake.get(0).getY() < 0 || snake.get(0).getY() >= height;
+    }
 
     /**
      * Checks if the head of the snake hits any unit of the snake body  

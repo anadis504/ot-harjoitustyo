@@ -73,7 +73,12 @@ public class GameService {
     public void gameUnit() {
         
         snake.move(direction);
-        snake.border();
+        if (snake.hitFrame()) {
+            if (level == 1) snake.border();
+            else if (level == 2) gameOver = true;
+            
+        }
+        
 
         if (snake.getSnake().get(0).equals(food)) {
             eat();

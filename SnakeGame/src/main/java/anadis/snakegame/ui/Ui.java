@@ -6,6 +6,7 @@
 package anadis.snakegame.ui;
 
 import anadis.snakegame.dao.FileScoreDao;
+import anadis.snakegame.dao.ScoreDao;
 import anadis.snakegame.domain.ScoreService;
 import java.io.FileInputStream;
 import java.util.HashMap;
@@ -38,8 +39,8 @@ public class Ui extends Application {
     private int levels;
     private HashMap<Integer, Button> levelButtons;
     private int routing;
-//    private HashMap<Integer, Button> scoreLevels;
 
+    
     @Override
     public void init() throws Exception {
         Properties properties = new Properties();
@@ -47,13 +48,13 @@ public class Ui extends Application {
         properties.load(new FileInputStream("config.properties"));
 
         String scoreFile = properties.getProperty("scoreFile");
-        FileScoreDao scoreDao = new FileScoreDao(scoreFile);
+        ScoreDao scoreDao = new FileScoreDao(scoreFile);
         this.scoreService = new ScoreService(scoreDao);
 
         this.viewScores = new ScoreScene(scoreService);
         this.gameScene = new GameScene(scoreService);
         this.back = new Button("back to menu");
-        this.levels = 2;
+        this.levels = 4;
 
         this.routing = 0;
         this.levelButtons = new HashMap<>();

@@ -124,23 +124,27 @@ public class GameScene {
     }
 
     public void paintBackground(GraphicsContext context) {
-        context.setFill(Color.BEIGE);
+        int level = gameService.getLevel();
+        context.setFill(Color.LIGHTYELLOW);
         context.fillRect(0, 0, width, height);
-        if (gameService.getLevel() == 2) {
+        if (level == 2 || level == 4) {
             context.setStroke(Color.SADDLEBROWN);
             context.setLineWidth(3);
             context.strokeRect(0, 0, width, height);
         }
-
         context.setFill(Color.DEEPSKYBLUE);
-        context.fillText("Score: " + gameService.getScore(), 10, 30);
+        context.fillText("Score: " + gameService.getScore(), Ui.blocksize/2, Ui.blocksize);
+        if (level == 3 || level == 4) {
+            context.setFill(Color.ORANGERED);
+            context.fillText(""+gameService.getRemainingCounter(), Ui.width/2*Ui.blocksize, Ui.blocksize);
+        }
     }
 
     public void paintFood(GraphicsContext context) {
         gameService.foodColor();
         Color color = Color.web(gameService.foodColor());
         context.setFill(color);
-        context.fillOval(gameService.foodX(), gameService.foodY(), Ui.blocksize, Ui.blocksize);
+        context.fillOval(gameService.foodX()+1, gameService.foodY()+1, Ui.blocksize-2, Ui.blocksize-2);
     }
 
     public void paintSnake(GraphicsContext context) {

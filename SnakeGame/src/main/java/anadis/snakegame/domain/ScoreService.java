@@ -8,7 +8,6 @@ package anadis.snakegame.domain;
 import anadis.snakegame.dao.ScoreDao;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 /**
@@ -39,7 +38,6 @@ public class ScoreService {
     public void addScore(String name, int score, int level) {
         if (generateRank(score, level) <= 20) {
             Score newScore = new Score(name, score, level,java.time.LocalDateTime.now());
-//            newScore.setTimestamp(java.time.LocalDateTime.now());
             dao.add(newScore);
         }
     }
@@ -50,7 +48,6 @@ public class ScoreService {
                 .stream()
                 .filter(score -> score.getScore() >= points)
                 .count();
-        System.out.println(rank);
         return (int) rank + 1;
     }
 
@@ -80,10 +77,7 @@ public class ScoreService {
         while (scores.size() > 20) {
             scores.remove(20);
         }
-        for (Score s : scores) {
-            System.out.println(s.getScore());
-        }
-
+        
         return scores;
     }
 }

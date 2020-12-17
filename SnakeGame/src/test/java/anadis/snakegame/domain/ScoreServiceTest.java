@@ -9,7 +9,6 @@ import anadis.snakegame.dao.FileScoreDao;
 import anadis.snakegame.dao.ScoreDao;
 import java.util.ArrayList;
 import org.junit.After;
-import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 import static org.mockito.Mockito.*;
@@ -37,17 +36,10 @@ public class ScoreServiceTest {
     }
 
     @Test
-    public void whenDaoIsEmptyServiceReturnAppropriateMessage() {
-        when(dao.topTwenty()).thenReturn(new ArrayList<Score>());
-        assertTrue(scoreService.getScores().get(0)[0].equals("No hightscores yet"));
-        verify(dao, times(1)).topTwenty();
-    }
-
-    @Test
     public void whenDaoIsEmptyAnyNewScoreIsAddedToDao() {
-        when(dao.topTwenty()).thenReturn(new ArrayList<Score>());
-        scoreService.addScore("bob", 12);
-        verify(dao, times(1)).topTwenty();
+        when(dao.getAll()).thenReturn(new ArrayList<>());
+        scoreService.addScore("bob", 12, 1);
+        verify(dao, times(1)).getAll();
         verify(dao).add(anyObject());
     }
 
@@ -55,10 +47,10 @@ public class ScoreServiceTest {
     public void tooLowScoreIsNotAddedToDao() {
         ArrayList<Score> scorelist = new ArrayList<>();
         for (int i = 2; i <= 22; i++) {
-            scorelist.add(new Score("bob" + i, i));
+            scorelist.add(new Score("bob" + i, i, 1, null));
         }
-        when(dao.topTwenty()).thenReturn(scorelist);
-        scoreService.addScore("bob", 1);
+        when(dao.getAll()).thenReturn(scorelist);
+        scoreService.addScore("bob", 1, 1);
         verify(dao, times(0)).add(anyObject());
     }
     

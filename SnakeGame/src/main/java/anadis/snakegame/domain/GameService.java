@@ -10,23 +10,21 @@ import java.util.List;
 
 /**
  * The Service class that provides the interface between application logic and
- * graphical user interface. 
- * This class keeps track of the objects on the game
+ * graphical user interface. This class keeps track of the objects on the game
  * screen and the game score.
- * 
+ *
  * @author anadis
  */
 public class GameService {
 
-    private int score;
+    private int score, level, counter, maxSteps;
     private Snake snake;
     private Food food;
     private Direction direction;
     private boolean gameOver;
-    private int level;
 
     /**
-     * 
+     *
      */
     public GameService(int level) {
         this.snake = new Snake(0, Ui.height / 2);
@@ -35,11 +33,13 @@ public class GameService {
         this.gameOver = false;
         this.score = 0;
         this.level = level;
+        this.counter = 0;
+        this.maxSteps = (int) Math.floor((Ui.height+Ui.width)*0.75);
     }
 
     /**
      * Method for setting the direction of the snake
-     * 
+     *
      * @param direction
      */
     public void setDirection(Direction direction) {
@@ -53,10 +53,11 @@ public class GameService {
     public int getScore() {
         return this.score;
     }
-    
+
     public int getLevel() {
         return this.level;
     }
+
     /**
      *
      * @return true if Game Over, otherwise false
@@ -71,14 +72,17 @@ public class GameService {
      * method eat if snake head hits food and set Game Over if snake crashes.
      */
     public void gameUnit() {
-        
+
         snake.move(direction);
+        setCounter();
+
         if (snake.hitFrame()) {
-            if (level == 1) snake.border();
-            else if (level == 2) gameOver = true;
-            
+            if (level == 1 || level == 3) {
+                snake.border();
+            } else if (level == 2 || level == 4) {
+                gameOver = true;
+            }
         }
-        
 
         if (snake.getSnake().get(0).equals(food)) {
             eat();
@@ -87,6 +91,7 @@ public class GameService {
         if (snake.bodyCrash()) {
             gameOver = true;
         }
+
     }
 
     /**
@@ -97,6 +102,17 @@ public class GameService {
         return food.getColor();
     }
 
+    public void setCounter() {
+        if (level == 1 || level == 2) {
+            return;
+        }
+        counter++;
+        if (counter > maxSteps) {
+            food.relocate();
+            counter = 0;
+        }
+    }
+
     /**
      *
      * @return food's X coordinate
@@ -104,7 +120,7 @@ public class GameService {
     public int foodX() {
         return food.getX() * Ui.blocksize;
     }
-    
+
     /**
      *
      * @return food's Y coordinate
@@ -112,19 +128,20 @@ public class GameService {
     public int foodY() {
         return food.getY() * Ui.blocksize;
     }
-    
+
     /**
      *
      * @return snake ArrayList<Block>
      */
     public List<Block> getSnake() {
-        return snake.getSnake();        
+        return snake.getSnake();
     }
 
     private void eat() {
         snake.grow();
         score++;
         food.relocate();
+        counter = 0;
     }
 
     /**
@@ -133,5 +150,9 @@ public class GameService {
      */
     public Block getFood() {
         return this.food;
+    }
+    
+    public int getRemainingCounter() {
+        return (maxSteps-counter+1)/2;
     }
 }

@@ -165,7 +165,6 @@ public class GameScene {
 
         submit.setOnAction(e -> {
             String nickname = inputField.getText();
-            System.out.println(inputField.getText());
             scoreService.addScore(nickname, gameService.getScore(), gameService.getLevel());
             Ui.back.fire();
         });

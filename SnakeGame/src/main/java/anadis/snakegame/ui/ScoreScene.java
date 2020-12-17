@@ -31,7 +31,6 @@ public class ScoreScene {
         BorderPane rootPane = new BorderPane();
         GridPane pane = new GridPane();
 
-        System.out.println("here we are");
         Label tittle = new Label("Top Twenty Scores for level " + level);
 
         pane.setAlignment(Pos.TOP_CENTER);

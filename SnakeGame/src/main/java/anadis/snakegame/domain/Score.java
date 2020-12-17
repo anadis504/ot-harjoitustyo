@@ -73,7 +73,6 @@ public class Score implements Comparable<Score> {
             return this.level - other.level;
         }
         if (this.score == other.getScore()) {
-//            System.out.println(this.timestamp.compareTo(other.getTimestamp()));
             return this.timestamp.compareTo(other.getTimestamp());
         }
         return other.getScore() - this.score;

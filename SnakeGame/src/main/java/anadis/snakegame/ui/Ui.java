@@ -53,7 +53,7 @@ public class Ui extends Application {
 
         this.viewScores = new ScoreScene(scoreService);
         this.gameScene = new GameScene(scoreService);
-        this.back = new Button("back to menu");
+        Ui.back = new Button("back to menu");
         this.levels = 4;
 
         this.routing = 0;

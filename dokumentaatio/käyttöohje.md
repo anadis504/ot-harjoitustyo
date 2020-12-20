@@ -1,4 +1,4 @@
-# Käyttöohje
+# User Manual
 
 Download the [.jar](https://github.com/anadis504/ot-harjoitustyo/releases/tag/viikko6) file.
 

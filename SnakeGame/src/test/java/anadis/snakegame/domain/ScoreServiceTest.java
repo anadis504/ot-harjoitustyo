@@ -7,6 +7,7 @@ package anadis.snakegame.domain;
 
 import anadis.snakegame.dao.FileScoreDao;
 import anadis.snakegame.dao.ScoreDao;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import org.junit.After;
 import static org.junit.Assert.assertEquals;
@@ -43,7 +44,7 @@ public class ScoreServiceTest {
         when(dao.getAll()).thenReturn(new ArrayList<>());
         scoreService.addScore("bob", 12, 1);
         verify(dao, times(1)).getAll();
-        verify(dao).add(anyObject());
+        verify(dao).add(eq("bob"), eq(12), eq(1), anyObject());
     }
 
     @Test
@@ -54,7 +55,7 @@ public class ScoreServiceTest {
         }
         when(dao.getAll()).thenReturn(scorelist);
         scoreService.addScore("bob", 1, 1);
-        verify(dao, times(0)).add(anyObject());
+        verify(dao, times(0)).add(anyString(), anyInt(), anyInt(), anyObject());
     }
 
     @Test
@@ -85,5 +86,17 @@ public class ScoreServiceTest {
         when(dao.getAll()).thenReturn(scorelist);
         assertEquals(1, scoreService.generateRank(13, 1));
         assertEquals(2, scoreService.generateRank(12, 1));
+    }
+    
+    @Test
+    public void inputtingEmptyNameSavesPlayerAsAnonymous() {
+        scoreService.addScore("", 1, 1);
+        verify(dao).add(eq("Anonymous"), anyInt(), anyInt(), anyObject());
+    }
+    
+    @Test
+    public void tooLongNicknameIsShortened() {
+        scoreService.addScore("asdfghjklpoiuytrnmvbdkfjghtud", 1, 3);
+        verify(dao).add(eq("asdfghjklpoiuytrnmvb..."), anyInt(), anyInt(), anyObject());
     }
 }

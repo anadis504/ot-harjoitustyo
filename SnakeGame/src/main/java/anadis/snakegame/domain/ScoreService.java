@@ -6,6 +6,7 @@
 package anadis.snakegame.domain;
 
 import anadis.snakegame.dao.ScoreDao;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,8 +40,15 @@ public class ScoreService {
      */
     public void addScore(String name, int score, int level) {
         if (generateRank(score, level) <= 20) {
-            Score newScore = new Score(name, score, level, java.time.LocalDateTime.now());
-            dao.add(newScore);
+            if (name.equals("")) {
+                name = "Anonymous";
+            }
+            if (name.length() > 20) {
+                name = name.substring(0, 20) + "...";
+            }
+            LocalDateTime timestamp = java.time.LocalDateTime.now();
+
+            dao.add(name, score, level, timestamp);
         }
     }
 

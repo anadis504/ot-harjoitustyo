@@ -6,6 +6,7 @@
 package anadis.snakegame.dao;
 
 import anadis.snakegame.domain.Score;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -14,5 +15,5 @@ import java.util.List;
  */
 public interface ScoreDao {
     List<Score> getAll();
-    void add(Score score);
+    void add(String name, int points, int level, LocalDateTime timestamp);
 }

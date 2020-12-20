@@ -58,11 +58,15 @@ public class FileScoreDao implements ScoreDao {
 
     /**
      *
-     * @param newScore score to write to memory
+     * @param name
+     * @param points
+     * @param level
+     * @param timestamp
      */
     @Override
-    public void add(Score newScore) {
-        scores.add(newScore);
+    public void add(String name, int points, int level, LocalDateTime timestamp) {
+        
+        scores.add(new Score(name, points, level, timestamp));
         Collections.sort(scores);
 
         try {

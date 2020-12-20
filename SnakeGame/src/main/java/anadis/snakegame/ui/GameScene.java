@@ -188,10 +188,10 @@ public class GameScene {
      * @param context
      */
     public void paintSnake(GraphicsContext context) {
-        for (Block block : gameService.getSnake()) {
+        gameService.getSnake().forEach((block) -> {
             context.setFill(Color.DARKSEAGREEN);
             context.fillRect(block.getX() * Ui.blocksize, block.getY() * Ui.blocksize, Ui.blocksize, Ui.blocksize);
-        }
+        });
     }
 
     /**

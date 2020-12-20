@@ -8,6 +8,7 @@ package anadis.snakegame.ui;
 
 
 /**
+ * The main class
  *
  * @author anadis
  */
@@ -18,7 +19,7 @@ public class Main {
      */
     public static void main(String[] args) {
     
-        System.out.println("Hello Snake!");
+        System.out.println("Running SnakeGame...");
         Ui.main(args);
     }
     

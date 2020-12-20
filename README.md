@@ -16,58 +16,62 @@ The classic snake-game desctop application: a single-player computer game where 
 
 [User Manual](https://github.com/anadis504/ot-harjoitustyo/blob/master/dokumentaatio/k%C3%A4ytt%C3%B6ohje.md)
 
-## Komentorivitoiminnot
+## Command line functions
 
-### Ohjelman suorittaminen
+### Running the program
 
-Projektin koodi suoritetaan Netbeansissa vihreää nappia painamalla tai komennolla 
+Program code can be run from Netbeans or from terminal with command
 
 ```
 mvn compile exec:java -Dexec.mainClass=anadis.snakegame.ui.Main
 ```
 
-### Testaus
+### Testing
 
-Testit suoritetaan komennolla
+Test can be run with command
 
 ```
 mvn test
 ```
 
-Testikattavuusraportti luodaan komennolla
+Code coverage report can be generated with command
 
 ```
 mvn jacoco:report
 ```
 
-Kattavuusraporttia voi tarkastella avaamalla selaimella tiedosto _target/site/jacoco/index.html_
+The code coverage report can be reviewed by running file _target/site/jacoco/index.html_ in browser
 
-### Suoritettavan jarin generointi
+### Generating a working jar file
 
-Komento
+Running command
 
 ```
 mvn package
 ```
 
-generoi hakemistoon _target_ suoritettavan jar-tiedoston _SnakeGame-1.0-SNAPSHOT.jar_
+generates jar file _SnakeGame-1.0-SNAPSHOT.jar_ to the repositorio _target_ and can be run with command
+
+```
+java -jar SnakeGame-1.0-SNAPSHOT.jar
+```
 
 ### Checkstyle
 
-Tiedostoon [checkstyle.xml](https://github.com/anadis504/ot-harjoitustyo/blob/master/SnakeGame/checkstyle.xml) määrittelemät tarkistukset suoritetaan komennolla
+Style checking as defined in the document [checkstyle.xml](https://github.com/anadis504/ot-harjoitustyo/blob/master/SnakeGame/checkstyle.xml) can be run with command
 
 ```
  mvn jxr:jxr checkstyle:checkstyle
 ```
 
-Mahdolliset virheilmoitukset selviävät avaamalla selaimella tiedosto _target/site/checkstyle.html_
+And possible style violations be reviewed by running file _target/site/checkstyle.html_ in browser
 
 ### JavaDoc
 
-JavaDoc on generoitavissa komennolla 
+JavaDoc is generates by command
 
 ```
 mvn javadoc:javadoc
 ```
 
-Generoitu JavaDoc löytyy hakemistosta _target/site/apidocs/_
+and reviewed by running files found in _target/site/apidocs/_

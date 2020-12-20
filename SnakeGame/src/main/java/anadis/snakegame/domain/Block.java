@@ -80,7 +80,7 @@ public class Block {
     /**
      * Checks if two pixel units have the same coordinates on the game plane
      * 
-     * @param Block the Block object to be compared to
+     * @param other Block object to compare to
      * @return true if the coordinates are equal, otherwise false
      */
     public boolean equals(Block other) {

@@ -30,18 +30,28 @@ public class ScoreService {
     }
 
     /**
-     * Method for adding new "name : score" pair to permanent memory.
+     * Method for adding new score data to permanent memory. Generates timestamp
+     * automatically
      *
      * @param name of player
      * @param score amount of points
+     * @param level
      */
     public void addScore(String name, int score, int level) {
         if (generateRank(score, level) <= 20) {
-            Score newScore = new Score(name, score, level,java.time.LocalDateTime.now());
+            Score newScore = new Score(name, score, level, java.time.LocalDateTime.now());
             dao.add(newScore);
         }
     }
 
+    /**
+     * Calculates the rank of the new score in the existing score list.
+     *
+     * @param points
+     * @param level
+     *
+     * @return int rank
+     */
     public int generateRank(int points, int level) {
         List<Score> scores = getScoresForLevel(level);
         long rank = scores
@@ -52,6 +62,8 @@ public class ScoreService {
     }
 
     /**
+     * Creates a list of String tables for presentation of the score lists in
+     * gui
      *
      * @param level
      * @return list of the scores in the memory
@@ -68,16 +80,23 @@ public class ScoreService {
         return scorelist;
     }
 
+    /**
+     * Collects the twenty highest scores of given level from the existing score
+     * list
+     *
+     * @param level
+     * @return
+     */
     public List<Score> getScoresForLevel(int level) {
         List<Score> scores = dao.getAll()
                 .stream()
                 .filter((score) -> level == score.getLevel())
                 .collect(Collectors.toList());
-        
+
         while (scores.size() > 20) {
             scores.remove(20);
         }
-        
+
         return scores;
     }
 }

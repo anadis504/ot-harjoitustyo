@@ -22,25 +22,45 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 /**
+ * Class for initializing the graphical user interface and shows main menu.
  *
  * @author anadis
  */
 public class Ui extends Application {
 
+    /**
+     * The amount of column-pixels of the game grid
+     */
     public static int width = 20;
+
+    /**
+     * The amount of row-pixels of the game grid
+     */
     public static int height = 20;
+
+    /**
+     * The size of one game unit/pixel
+     */
     public static int blocksize = 25;
     private ScoreScene viewScores;
     private GameScene gameScene;
     private ScoreService scoreService;
+
+    /**
+     * The button for returning back to the "main menu" from other scenes 
+     */
     public static Button back;
     private Scene mainSelection;
-    private Scene LevelSelection;
+    private Scene levelSelection;
     private int levels;
     private HashMap<Integer, Button> levelButtons;
     private int routing;
 
-    
+    /**
+     * Reads configuration file config.properties in the root directory.
+     *
+     * @throws Exception
+     */
     @Override
     public void init() throws Exception {
         Properties properties = new Properties();
@@ -64,6 +84,10 @@ public class Ui extends Application {
 
     }
 
+    /**
+     *
+     * @param primaryStage
+     */
     @Override
     public void start(Stage primaryStage) {
 
@@ -87,19 +111,21 @@ public class Ui extends Application {
 
         scores.setOnAction((event) -> {
             routing = 2;
-            primaryStage.setScene(LevelSelection);
+            primaryStage.setScene(levelSelection);
         });
 
         newGame.setOnAction(e -> {
             routing = 1;
-            primaryStage.setScene(LevelSelection);
+            primaryStage.setScene(levelSelection);
         });
 
         back.setOnAction(e -> {
             primaryStage.setScene(mainSelection);
         });
 
+        
         // level selection scene
+        
         GridPane levelPane = new GridPane();
         levelPane.setAlignment(Pos.TOP_LEFT);
         levelPane.setVgap(width);
@@ -119,7 +145,7 @@ public class Ui extends Application {
         backButton.setOnAction(a -> {
             primaryStage.setScene(mainSelection);
         });
-        LevelSelection = new Scene(levelPane, 500, 500);
+        levelSelection = new Scene(levelPane, 500, 500);
 
         primaryStage.setScene(mainSelection);
         primaryStage.setTitle("SNAKE GAME");
@@ -127,6 +153,10 @@ public class Ui extends Application {
 
     }
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         launch(args);
     }

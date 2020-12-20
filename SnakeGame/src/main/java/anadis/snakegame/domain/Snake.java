@@ -21,14 +21,13 @@ public class Snake {
 
     /**
      * Initializing the snake to consist of three block, meaning snake is three
-     * grid units long.
-     *
-     * Snakes receives its coordinates through constructor. Class
+     * grid units long.Snakes receives its coordinates through constructor.Class
      * uses public variables 'width' and 'height' from Class 'Ui' to know the
      * frames of the game grid
      * 
-     * @Param x
-     * @Param y
+     *
+     * @param x
+     * @param y
      */
     public Snake(int x, int y) {
         this.width = Ui.width;
@@ -41,7 +40,7 @@ public class Snake {
 
     /**
      *
-     * @return snake - ArrayList<Block>
+     * @return ArrayList of Block objects, the snake
      */
     public List<Block> getSnake() {
         return this.snake;
@@ -84,6 +83,11 @@ public class Snake {
         }
     }
 
+    /**
+     * Checks for the snake head hitting the outer walls
+     * 
+     * @return true if head crosses the outer wall, otherwise false
+     */
     public boolean hitFrame() {
         return snake.get(0).getX() < 0 || snake.get(0).getX() >= width 
                 || snake.get(0).getY() < 0 || snake.get(0).getY() >= height;

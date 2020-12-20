@@ -24,17 +24,23 @@ public class GameService {
     private boolean gameOver;
 
     /**
+     * The Service class that provides the interface between application logic
+     * and graphical user interface.
      *
+     * Initials the game of width*height pixels, snake coming on from the center
+     * left side and food located in the northwest quarter of the frame
+     *
+     * @param level
      */
     public GameService(int level) {
         this.snake = new Snake(0, Ui.height / 2);
-        this.food = new Food(5, 5);
+        this.food = new Food(Ui.height / 4, Ui.width / 4);
         this.direction = Direction.RIGHT;
         this.gameOver = false;
         this.score = 0;
         this.level = level;
         this.counter = 0;
-        this.maxSteps = (int) Math.floor((Ui.height+Ui.width)*0.75);
+        this.maxSteps = (int) Math.floor((Ui.height + Ui.width) * 0.75);
     }
 
     /**
@@ -54,13 +60,17 @@ public class GameService {
         return this.score;
     }
 
+    /**
+     *
+     * @return the level of the game
+     */
     public int getLevel() {
         return this.level;
     }
 
     /**
      *
-     * @return true if Game Over, otherwise false
+     * @return true if the game is over, otherwise false
      */
     public boolean getGameOver() {
         return this.gameOver;
@@ -68,8 +78,10 @@ public class GameService {
 
     /**
      * Method for maintaining one time instance of the game. Moves the snake one
-     * pixel unit, relocates the snake if snake is leaving the game frame, calls
-     * method eat if snake head hits food and set Game Over if snake crashes.
+     * pixel unit, checks if snake is moving outside of the game frame,
+     * relocates the snake if snake is leaving the game frame or sets Game Over
+     * according to the game level, calls method eat if snake head hits food and
+     * set Game Over if snake crashes in itself.
      */
     public void gameUnit() {
 
@@ -102,6 +114,9 @@ public class GameService {
         return food.getColor();
     }
 
+    /**
+     * increases the counter by one for levels 3 and 4
+     */
     public void setCounter() {
         if (level == 1 || level == 2) {
             return;
@@ -131,7 +146,7 @@ public class GameService {
 
     /**
      *
-     * @return snake ArrayList<Block>
+     * @return ArrayList of Bloc objects, the snake
      */
     public List<Block> getSnake() {
         return snake.getSnake();
@@ -146,13 +161,18 @@ public class GameService {
 
     /**
      *
-     * @return food Block
+     * @return food, Block object
      */
     public Block getFood() {
         return this.food;
     }
-    
+
+    /**
+     *
+     * @return the remaining time before food is automatically relocated,
+     * formatted to fit to gui
+     */
     public int getRemainingCounter() {
-        return (maxSteps-counter+2)/3;
+        return (maxSteps - counter + 2) / 3;
     }
 }

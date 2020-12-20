@@ -23,8 +23,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 /**
+ * Class for showing the ongoing game in gui. Handles AnimationTimer
  *
- * @author anadis
  */
 public class GameScene {
 
@@ -34,6 +34,11 @@ public class GameScene {
     private AnimationTimer timer;
     private VBox inputForm;
 
+    /**
+     * Receives an instance of ScoreService class in constructor.
+     *
+     * @param service
+     */
     public GameScene(ScoreService service) {
 
         this.scoreService = service;
@@ -42,6 +47,12 @@ public class GameScene {
 
     }
 
+    /**
+     * Initials the scene with an instance of AnimationTimer.
+     *
+     * @param level
+     * @return Scene, the created scene to view the ongoing game
+     */
     public Scene getScene(int level) {
 
         this.gameService = new GameService(level);
@@ -90,6 +101,12 @@ public class GameScene {
         return gameScene;
     }
 
+    /**
+     * Handles one unit of the AnimationTimer. Check for game over and paint the
+     * canvas accordingly.
+     *
+     * @param context, GraphicalContext used to animate the game
+     */
     public void timeInstance(GraphicsContext context) {
         boolean gameOver = gameService.getGameOver();
         Ui.back.setVisible(gameOver);
@@ -106,6 +123,13 @@ public class GameScene {
 
     }
 
+    /**
+     * Paints the Game Over picture and manages the checking of possible new
+     * high score. If a new high score is reached, outputs the rank of the score
+     * and shows the input form for filling out name of player
+     *
+     * @param context, GraphicalContext used to animate the game
+     */
     public void paintGameOver(GraphicsContext context) {
         int rank = scoreService.generateRank(gameService.getScore(), gameService.getLevel());
         context.setFill(Color.RED);
@@ -123,6 +147,12 @@ public class GameScene {
 
     }
 
+    /**
+     * Paints the background of the game picture, views the current score and
+     * the food timer if level demands it.
+     *
+     * @param context, GraphicalContext used to animate the game
+     */
     public void paintBackground(GraphicsContext context) {
         int level = gameService.getLevel();
         context.setFill(Color.LIGHTYELLOW);
@@ -133,20 +163,30 @@ public class GameScene {
             context.strokeRect(0, 0, width, height);
         }
         context.setFill(Color.DEEPSKYBLUE);
-        context.fillText("Score: " + gameService.getScore(), Ui.blocksize/2, Ui.blocksize);
+        context.fillText("Score: " + gameService.getScore(), Ui.blocksize / 2, Ui.blocksize);
         if (level == 3 || level == 4) {
             context.setFill(Color.ORANGERED);
-            context.fillText(""+gameService.getRemainingCounter(), Ui.width/2*Ui.blocksize, Ui.blocksize);
+            context.fillText("" + gameService.getRemainingCounter(), Ui.width / 2 * Ui.blocksize, Ui.blocksize);
         }
     }
 
+    /**
+     * Paint the food in the game picture
+     *
+     * @param context, GraphicalContext used to animate the game
+     */
     public void paintFood(GraphicsContext context) {
         gameService.foodColor();
         Color color = Color.web(gameService.foodColor());
         context.setFill(color);
-        context.fillOval(gameService.foodX()+1, gameService.foodY()+1, Ui.blocksize-2, Ui.blocksize-2);
+        context.fillOval(gameService.foodX() + 1, gameService.foodY() + 1, Ui.blocksize - 2, Ui.blocksize - 2);
     }
 
+    /**
+     * Paints the snake, main character in the game.
+     *
+     * @param context
+     */
     public void paintSnake(GraphicsContext context) {
         for (Block block : gameService.getSnake()) {
             context.setFill(Color.DARKSEAGREEN);
@@ -154,6 +194,11 @@ public class GameScene {
         }
     }
 
+    /**
+     * Handles the input form for players name when adding new high score to the
+     * memory. On execution redirects the scene back to the "main menu".
+     *
+     */
     public void initNewScoreForm() {
         this.inputForm = new VBox();
         inputForm.setAlignment(Pos.TOP_CENTER);

@@ -24,6 +24,7 @@ public class Score implements Comparable<Score> {
      * @param name String name
      * @param points
      * @param level
+     * @param time
      */
     public Score(String name, int points, int level, LocalDateTime time) {
         this.nickname = name;
@@ -48,20 +49,34 @@ public class Score implements Comparable<Score> {
         return this.score;
     }
 
+    /**
+     *
+     * @param timest
+     */
     public void setTimestamp(LocalDateTime timest) {
         this.timestamp = timest;
     }
     
+    /**
+     *
+     * @return time of creation
+     */
     public LocalDateTime getTimestamp() {
         return this.timestamp;
     }
     
+    /**
+     *
+     * @return level of the game
+     */
     public int getLevel() {
         return this.level;
     }
     
     /**
-     * Method compares two scores by the amount of points
+     * Method compares two scores by the amount of points, the time of creation 
+     * and the game level. Older scores ranking higher than new ones if the score
+     * amount (and level) is equal
      * 
      * @param other Score to compare to
      * @return int point-difference of the two scores

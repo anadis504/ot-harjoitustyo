@@ -15,17 +15,28 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
 /**
- *
- * @author anadis
+ * Class for viewing the list of top twenty scores in gui
+ * 
  */
 public class ScoreScene {
 
     private ScoreService scoreService;
 
+    /**
+     * Receives ScoreService instance in the constructor 
+     * 
+     * @param service
+     */
     public ScoreScene(ScoreService service) {
         this.scoreService = service;
     }
 
+    /**
+     *
+     * @param level
+     * @return Scene, the scene created to show the list of top twenty scores of
+     * given level
+     */
     public Scene getScene(int level) {
 
         BorderPane rootPane = new BorderPane();
@@ -41,7 +52,7 @@ public class ScoreScene {
         pane.add(tittle, 1, 0);
         int i = 2;
         for (String[] score : scoreService.getScores(level)) {
-            pane.add(new Label(Integer.toString(i - 1)+ " "), 0, i);
+            pane.add(new Label(Integer.toString(i - 1) + " "), 0, i);
             pane.add(new Label(score[0]), 1, i);
             pane.add(new Label("  :  "), 2, i);
             pane.add(new Label(score[1]), 3, i);
@@ -55,7 +66,7 @@ public class ScoreScene {
         pane.add(back, 3, 0);
 
         rootPane.setCenter(pane);
-        Scene scoreScene = new Scene(rootPane, Ui.width*Ui.blocksize, Ui.height*Ui.blocksize);
+        Scene scoreScene = new Scene(rootPane, Ui.width * Ui.blocksize, Ui.height * Ui.blocksize);
         return scoreScene;
     }
 }

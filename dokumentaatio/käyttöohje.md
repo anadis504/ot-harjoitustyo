@@ -1,6 +1,6 @@
 # User Manual
 
-Download the [SnakeGame.jar](https://github.com/anadis504/ot-harjoitustyo/releases/tag/viikko6) file.
+Download the [SnakeGame.jar](https://github.com/anadis504/ot-harjoitustyo/releases/tag/v1.3) file.
 
 ### Running program
 Run the command _java -jar SnakeGame.jar_ from the folder where the .jar file is located.

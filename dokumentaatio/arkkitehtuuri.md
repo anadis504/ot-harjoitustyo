@@ -32,12 +32,12 @@ Application loginc and user interface are separeted.
 
 Application logic is in the domain package. Class Block is the primary block in the game application logic. Classes Snake and Food are using/extending Block. 
 
-<img src="https://github.com/anadis504/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/Block%20logic.png" width=300>
+<img src="https://github.com/anadis504/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/Block%20logic.png" width=450>
 
 Direction is of Enum type representing the four possible directions of the movement on the grid.
 Scores are represented by the Score class and saved to permanent memory using ScoreDao. 
 
-<img src="https://github.com/anadis504/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/score%20class.png" width=100>
+<img src="https://github.com/anadis504/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/score%20class.png" width=150>
 
 One instance of the class ScoreService is initialized during program run and manages the score logic.
 The overall functionality of the program is described by:
@@ -60,4 +60,4 @@ FileScoreDao class arranges the scores firstly by the game level, then by the sc
 
 Functionality for selecting a new game of a given level:
 
-<img src="https://github.com/anadis504/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/sekvenssikaavio.png" width=400>
+<img src="https://github.com/anadis504/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/sekvenssikaavio.png" width=900>

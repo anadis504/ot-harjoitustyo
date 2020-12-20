@@ -50,7 +50,7 @@ highscore to the list after which it will automatically take you back to the mai
 
 ### Viewing highscores
 
-By navigating to the button "Scores" in the main menu you may list the Top Twenty highscores:
+By navigating to the button "Scores" in the main menu you may list the Top Twenty highscores according to the level of the game:
 
 
 <img src="https://github.com/anadis504/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/score-list.png" height=400 position=left>

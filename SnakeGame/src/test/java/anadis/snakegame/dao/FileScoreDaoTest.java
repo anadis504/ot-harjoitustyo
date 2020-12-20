@@ -6,7 +6,6 @@
 package anadis.snakegame.dao;
 
 import anadis.snakegame.domain.Score;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;

@@ -153,6 +153,6 @@ public class GameService {
     }
     
     public int getRemainingCounter() {
-        return (maxSteps-counter+1)/2;
+        return (maxSteps-counter+2)/3;
     }
 }

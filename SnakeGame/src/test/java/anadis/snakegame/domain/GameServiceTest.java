@@ -5,6 +5,7 @@
  */
 package anadis.snakegame.domain;
 
+import anadis.snakegame.ui.Ui;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -66,11 +67,49 @@ public class GameServiceTest {
         assertFalse(gameService.getFood().getX() == 5 && gameService.getFood().getY() == 4);
         assertFalse(gameService.getScore() == 0);
     }
-    
+
     @Test
     public void whenSnakeTriesGoingBackwardsItHitsItsOwnBodyAndGameOver() {
         gameService.setDirection(Direction.LEFT);
         gameService.gameUnit();
         assertTrue(gameService.getGameOver());
+    }
+
+    @Test
+    public void framesAreUpForLevelsTwoAndFout() {
+        gameService = new GameService(2);
+        gameService.gameUnit();
+        gameService.gameUnit();
+        gameService.getSnake().get(0).setX(Ui.width);
+        gameService.gameUnit();
+        assertTrue(gameService.getGameOver());
+        gameService = new GameService(4);
+        gameService.gameUnit();
+        gameService.gameUnit();
+        gameService.getSnake().get(0).setX(Ui.width);
+        gameService.gameUnit();
+        assertTrue(gameService.getGameOver());
+    }
+
+    @Test
+    public void levelOneAndThreeDontHaveFrame() {
+        gameService.getSnake().get(0).setX(Ui.width);
+        gameService.gameUnit();
+        assertFalse(gameService.getGameOver());
+        gameService = new GameService(3);
+        gameService.gameUnit();
+        gameService.gameUnit();
+        gameService.getSnake().get(0).setX(Ui.width);
+        gameService.gameUnit();
+        assertFalse(gameService.getGameOver());
+    }
+
+    @Test
+    public void whenCounterIsFullFoodRelocatesAutomatically() {
+        gameService = new GameService(3);
+        for (int i = 0; i < Ui.height+Ui.width; i++) {
+            gameService.gameUnit();
+        }
+        assertFalse(gameService.getFood().getX() == 5 && gameService.getFood().getY() == 4);
     }
 }

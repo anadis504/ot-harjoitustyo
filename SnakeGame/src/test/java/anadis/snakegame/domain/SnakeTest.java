@@ -57,19 +57,27 @@ public class SnakeTest {
     }
 
     @Test
-    public void snakesCoordinatesCorrectWhenSnakeMovesOutsideOfFrame() {
+    public void snakesCoordinatesCorrectWhenSnakeMovesOutsideOutOfFrameAndBorderIsUsed() {
         snake.move(Direction.LEFT);
+        assertTrue(snake.hitFrame());
         snake.border();
+        assertFalse(snake.hitFrame());
         assertEquals(19, snake.getSnake().get(0).getX());
         snake.move(Direction.RIGHT);
+        assertTrue(snake.hitFrame());
         snake.border();
+        assertFalse(snake.hitFrame());
         assertEquals(0, snake.getSnake().get(0).getX());
         snake.getSnake().get(0).setY(0);
         snake.move(Direction.UP);
+        assertTrue(snake.hitFrame());
         snake.border();
+        assertFalse(snake.hitFrame());
         assertEquals(19, snake.getSnake().get(0).getY());
         snake.move(Direction.DOWN);
+        assertTrue(snake.hitFrame());
         snake.border();
+        assertFalse(snake.hitFrame());
         assertEquals(0, snake.getSnake().get(0).getY());
     }
 

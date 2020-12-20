@@ -9,6 +9,7 @@ import anadis.snakegame.dao.FileScoreDao;
 import anadis.snakegame.dao.ScoreDao;
 import java.util.ArrayList;
 import org.junit.After;
+import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 import static org.mockito.Mockito.*;
@@ -21,6 +22,7 @@ public class ScoreServiceTest {
 
     ScoreDao dao;
     ScoreService scoreService;
+    Score score;
 
     public ScoreServiceTest() {
     }
@@ -29,6 +31,7 @@ public class ScoreServiceTest {
     public void setUp() {
         this.dao = mock(FileScoreDao.class);
         this.scoreService = new ScoreService(dao);
+        this.score = new Score("bob", 12, 1, java.time.LocalDateTime.now());
     }
 
     @After
@@ -53,6 +56,34 @@ public class ScoreServiceTest {
         scoreService.addScore("bob", 1, 1);
         verify(dao, times(0)).add(anyObject());
     }
-    
-    
+
+    @Test
+    public void scoresAreSortedByGameLevels() {
+        ArrayList<Score> scorelist = new ArrayList<>();
+        scorelist.add(score);
+        scorelist.add(new Score("bob", 21, 2, java.time.LocalDateTime.now()));
+        when(dao.getAll()).thenReturn(scorelist);
+        assertEquals(1, scoreService.getScores(1).size());
+        assertEquals("12", scoreService.getScores(1).get(0)[1]);
+        assertEquals("21", scoreService.getScores(2).get(0)[1]);
+    }
+
+    @Test
+    public void scoresAreInitializedWithTimestampAndSortedCorrectly() {
+        ArrayList<Score> scorelist = new ArrayList<>();
+        scorelist.add(score);
+        scorelist.add(new Score("alice", 12, 1, java.time.LocalDateTime.now()));
+        when(dao.getAll()).thenReturn(scorelist);
+        assertEquals(score, scoreService.getScoresForLevel(1).get(0));
+        assertEquals("alice", scoreService.getScores(1).get(1)[0]);
+    }
+
+    @Test
+    public void askingForRankGiveTheRightEstimate() {
+        ArrayList<Score> scorelist = new ArrayList<>();
+        scorelist.add(score);
+        when(dao.getAll()).thenReturn(scorelist);
+        assertEquals(1, scoreService.generateRank(13, 1));
+        assertEquals(2, scoreService.generateRank(12, 1));
+    }
 }

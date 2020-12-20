@@ -24,4 +24,10 @@
 | 6.12 | 2 | pisteiden lisäämistoiminnallisuuden ohjelmointi ja GUI muokkaminen |
 | 7.12 | 6 | testaus, refaktorointi, JavaDoc |
 | 8.12 | 4 | JavaDoc, dokumentaatio |
-| yht | 76.5 |
+| **viikko 7** |
+| 11.12 | 5 | Lisää tasoja ja toiminnallisuutta peliin |
+| 12.12 | 4 | Jatkoa lisää toiminnallisutta |
+| 17.12 | 4 | lisää toiminnallisuuden viimeistely |
+| 18.12 | 2 | testaus |
+| 20.12 | 9 | daon muutos, input validointi, loppu testaus, dokumentaatio, dokumentaatio, dokumentaatio.... |
+| yht | 100.5 |

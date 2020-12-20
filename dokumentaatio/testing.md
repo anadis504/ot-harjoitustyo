@@ -15,4 +15,7 @@ FileScoreDao class is tested by creating a temporary file following [TemporaryFo
 ### Code coverage
 Except from the user interface package [snakegame.ui](https://github.com/anadis504/ot-harjoitustyo/tree/master/SnakeGame/src/main/java/anadis/snakegame/ui) the coverage of the tested code is at 94% for row coverage and 97% for branches. 
 
-<img src="https://github.com/anadis504/ot-harjoitustyo/tree/master/SnakeGame/src/main/java/anadis/snakegame/ui" width=750>
+<img src="https://github.com/anadis504/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/JacocoReport%20from%202020-12-20%2016-40-05.png" width=750>
+
+## System testing
+The application system has been tested manually.
